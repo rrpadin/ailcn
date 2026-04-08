@@ -70,7 +70,7 @@ const AboutPage = () => {
                 transition={{ duration: 0.6 }}
                 className="max-w-3xl"
               >
-                <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-4">About AILCN</p>
+                <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">About AILCN</p>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
                   We built the network we wished existed
                 </h1>
@@ -186,17 +186,17 @@ const AboutPage = () => {
 
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-primary mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>87%</div>
+                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>87%</div>
                     <p className="font-medium mb-1">Implementation success rate</p>
                     <p className="text-sm text-muted-foreground">Across all certified consultant engagements</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-primary mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>142</div>
+                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>142</div>
                     <p className="font-medium mb-1">Certified consultants</p>
                     <p className="text-sm text-muted-foreground">Active members who passed our rigorous program</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-primary mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>$2.4M</div>
+                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>$2.4M</div>
                     <p className="font-medium mb-1">Average value delivered</p>
                     <p className="text-sm text-muted-foreground">Per engagement, measured against client goals</p>
                   </div>

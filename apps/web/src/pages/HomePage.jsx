@@ -328,15 +328,15 @@ const HomePage = () => {
 
                 <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>87%</div>
+                    <div className="text-4xl font-bold text-gold mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>87%</div>
                     <p className="text-sm text-muted-foreground">Success rate in AI implementation</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>142</div>
+                    <div className="text-4xl font-bold text-gold mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>142</div>
                     <p className="text-sm text-muted-foreground">Certified consultants in network</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>$2.4M</div>
+                    <div className="text-4xl font-bold text-gold mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>$2.4M</div>
                     <p className="text-sm text-muted-foreground">Average value delivered per engagement</p>
                   </div>
                 </div>
