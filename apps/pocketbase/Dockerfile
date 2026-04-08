@@ -10,4 +10,4 @@ RUN chmod +x ./pocketbase
 
 EXPOSE 8090
 
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090", "--encryptionEnv=PB_ENCRYPTION_KEY", "--dir=/data", "--migrationsDir=./pb_migrations", "--hooksDir=./pb_hooks", "--hooksWatch=false"]
+CMD ["sh", "-c", "./pocketbase serve --http=0.0.0.0:${PORT:-8090} --encryptionEnv=PB_ENCRYPTION_KEY --dir=/data --migrationsDir=./pb_migrations --hooksDir=./pb_hooks --hooksWatch=false"]
