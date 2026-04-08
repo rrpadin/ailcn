@@ -1,5 +1,8 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/hcgi/platform/:path*",
+      "destination": "https://pocketbase-app-production-e332.up.railway.app/:path*"
+    }
+  ]
 }

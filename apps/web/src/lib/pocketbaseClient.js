@@ -19,16 +19,20 @@ function normalizePocketBaseUrl(url) {
 function getPocketBaseApiUrl() {
   const envUrl = import.meta.env.VITE_POCKETBASE_URL?.trim();
 
-  if (envUrl) {
-    return normalizePocketBaseUrl(envUrl);
-  }
-
   if (typeof window !== 'undefined') {
     const { hostname, protocol } = window.location;
 
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      if (envUrl) {
+        return normalizePocketBaseUrl(envUrl);
+      }
+
       return `${protocol}//${hostname}:8090`;
     }
+  }
+
+  if (envUrl?.startsWith('/')) {
+    return envUrl;
   }
 
   return '/hcgi/platform';
