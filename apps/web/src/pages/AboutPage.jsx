@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Target, Eye, Shield, Users, TrendingUp, Award } from 'lucide-react';
+import { ArrowRight, Target, Eye, Shield, Users, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,24 +20,24 @@ const AboutPage = () => {
 
   const values = [
     {
-      icon: Shield,
-      title: 'Rigor over credentials',
-      description: 'We care about what consultants can actually deliver, not the letters after their name. Our certification is earned through real-world projects and measurable outcomes.'
-    },
-    {
       icon: Target,
-      title: 'Precision matching',
-      description: 'Generic advice creates generic results. We assess every organization and consultant so that matches are based on fit, not availability.'
+      title: 'Results over credentials',
+      description: 'Certifications mean nothing without outcomes. Every consultant in our network has proven they can deliver — not just talk about AI.'
     },
     {
-      icon: Eye,
-      title: 'Radical transparency',
-      description: 'We tell organizations exactly where they stand on AI readiness. We tell consultants exactly what the bar is. No ambiguity, no surprises.'
+      icon: Shield,
+      title: 'Selectivity by design',
+      description: "We turn people away. That's intentional. A network that accepts everyone protects no one."
     },
     {
       icon: Users,
-      title: 'Selective by design',
-      description: 'Quality degrades at scale when standards slip. We maintain a high bar for entry so the network retains its value for everyone inside it.'
+      title: 'Honest assessment',
+      description: "We tell organizations the truth about where they stand — even when it's not what they want to hear."
+    },
+    {
+      icon: Award,
+      title: 'Continuous growth',
+      description: "AI is moving fast. The network exists to keep everyone at the frontier — together."
     }
   ];
 
@@ -81,40 +81,29 @@ const AboutPage = () => {
             </div>
           </section>
 
-          {/* Mission & Vision */}
+          {/* Mission */}
           <section className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                    <Target className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-2xl font-bold mb-4">Our mission</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To close the gap between AI potential and AI reality. Most organizations know they need to adopt AI — few know how to do it well. We exist to connect them with the consultants who have actually done it, in a way that creates accountability on both sides.
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-3xl mx-auto"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Our mission</h2>
+                <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    Most organizations want to adopt AI. Most struggle to do it well. Not because the technology isn't ready — but because finding trustworthy, proven expertise is nearly impossible.
                   </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                    <Eye className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-2xl font-bold mb-4">Our vision</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    A world where AI leadership is a defined, verifiable skill — not a buzzword. Where organizations can confidently invest in transformation because the people guiding them have been tested, not just recommended.
+                  <p>
+                    AILCN was built to fix that. We certify consultants through a rigorous, real-world program. We assess organizations to understand exactly where they are and what they need. Then we make the match.
                   </p>
-                </motion.div>
-              </div>
+                  <p>
+                    No guesswork. No generic advice. Just the right expertise, in the right hands, at the right time.
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </section>
 
@@ -129,7 +118,7 @@ const AboutPage = () => {
                 className="max-w-3xl mx-auto"
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-8">The problem we solve</h2>
-                <div className="space-y-6 text-muted-foreground leading-relaxed">
+                <div className="space-y-5 text-muted-foreground leading-relaxed">
                   <p className="text-lg">
                     The AI consulting market is flooded. Anyone can put "AI strategy" on a LinkedIn profile. Organizations have no reliable way to tell who can actually deliver — and consultants with real expertise have no credible signal to set themselves apart.
                   </p>
@@ -216,7 +205,7 @@ const AboutPage = () => {
             </div>
           </section>
 
-          {/* Who Built This */}
+          {/* Built by practitioners */}
           <section className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -249,22 +238,22 @@ const AboutPage = () => {
                 viewport={{ once: true }}
                 className="max-w-2xl mx-auto text-center"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to be part of it?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to get started?</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Whether you're a consultant who can back up your expertise or an organization that's done guessing — there's a place for you in this network.
+                  Whether you're a consultant looking to join our network or an organization seeking proven AI expertise, the next step is simple.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="https://calendly.com/exitouinc/new-meeting" target="_blank" rel="noopener noreferrer">
+                  <Link to="/consultants">
                     <Button size="lg" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
                       Apply as consultant
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
-                  </a>
-                  <a href="https://tally.so/r/Pd9WW1" target="_blank" rel="noopener noreferrer">
+                  </Link>
+                  <Link to="/organizations">
                     <Button size="lg" variant="outline" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
                       Start assessment
                     </Button>
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             </div>
