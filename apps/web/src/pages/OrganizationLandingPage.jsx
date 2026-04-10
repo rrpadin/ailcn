@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -96,11 +97,18 @@ const OrganizationLandingPage = () => {
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
                   Stop guessing. Start with our AI readiness assessment. Get matched with certified consultants who understand your specific challenges and can help you move forward with confidence.
                 </p>
-                <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="min-w-72">
-                    AI Learning Readiness Snapshot (TM)
-                  </Button>
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="min-w-72">
+                      AI Learning Readiness Snapshot (TM)
+                    </Button>
+                  </a>
+                  <Link to="/consultants/directory">
+                    <Button size="lg" variant="outline" className="min-w-72">
+                      Browse Consultant Directory
+                    </Button>
+                  </Link>
+                </div>
               </motion.div>
             </div>
           </section>

@@ -143,6 +143,24 @@ const Header = () => {
     );
   };
 
+  const renderConsultantDirectoryLink = (isMobile = false) => {
+    const url = '/consultants/directory';
+    const baseClasses = isMobile
+      ? `text-sm font-medium ${isActive(url) ? 'text-primary' : 'text-foreground'}`
+      : `text-sm font-medium transition-colors hover:text-primary ${isActive(url) ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`;
+
+    return (
+      <Link
+        key="consultant-directory-nav"
+        to={url}
+        className={baseClasses}
+        onClick={isMobile ? closeMobileMenu : undefined}
+      >
+        Consultant Directory
+      </Link>
+    );
+  };
+
   const userInitials = currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : 'U';
   const avatarUrl = currentUser?.avatar ? pb.files.getUrl(currentUser, currentUser.avatar) : null;
 
@@ -161,11 +179,15 @@ const Header = () => {
             {!isAuthenticated ? (
               <>
                 {headerLinks.length > 0 ? (
-                  headerLinks.map(link => renderNavLink(link, false))
+                  <>
+                    {headerLinks.map(link => renderNavLink(link, false))}
+                    {renderConsultantDirectoryLink(false)}
+                  </>
                 ) : (
                   <>
                     <Link to="/" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>Home</Link>
                     <Link to="/consultants" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/consultants') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>For Consultants</Link>
+                    {renderConsultantDirectoryLink(false)}
                     <Link to="/organizations" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/organizations') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>For Organizations</Link>
                     <Link to="/resources" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/resources') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>Resources</Link>
                   </>
@@ -306,11 +328,15 @@ const Header = () => {
               {!isAuthenticated ? (
                 <>
                   {headerLinks.length > 0 ? (
-                    headerLinks.map(link => renderNavLink(link, true))
+                    <>
+                      {headerLinks.map(link => renderNavLink(link, true))}
+                      {renderConsultantDirectoryLink(true)}
+                    </>
                   ) : (
                     <>
                       <Link to="/" onClick={closeMobileMenu} className={`text-sm font-medium ${isActive('/') ? 'text-primary' : 'text-foreground'}`}>Home</Link>
                       <Link to="/consultants" onClick={closeMobileMenu} className={`text-sm font-medium ${isActive('/consultants') ? 'text-primary' : 'text-foreground'}`}>For Consultants</Link>
+                      {renderConsultantDirectoryLink(true)}
                       <Link to="/organizations" onClick={closeMobileMenu} className={`text-sm font-medium ${isActive('/organizations') ? 'text-primary' : 'text-foreground'}`}>For Organizations</Link>
                       <Link to="/resources" onClick={closeMobileMenu} className={`text-sm font-medium ${isActive('/resources') ? 'text-primary' : 'text-foreground'}`}>Resources</Link>
                     </>
