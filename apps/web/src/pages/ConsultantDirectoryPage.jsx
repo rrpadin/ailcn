@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import { Button } from '@/components/ui/button.jsx';
@@ -199,58 +200,86 @@ const ConsultantDirectoryPage = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-[#eef1f7]">
+      <div className="min-h-screen flex flex-col">
         <Header />
 
         <main className="flex-1">
-          <section className="relative overflow-hidden bg-[linear-gradient(135deg,rgba(34,57,104,0.92),rgba(77,109,168,0.74))] py-20 text-white">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.1),transparent_30%)]" />
-            <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/30 bg-white/75 px-6 py-10 text-center text-[#233a6b] shadow-[0_30px_80px_rgba(14,24,49,0.25)] backdrop-blur-sm sm:px-10 sm:py-14">
-                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#5c7aa3]">
-                  AILCN Consultant Directory
+          <section className="relative py-24 md:py-32 flex items-center overflow-hidden">
+            <div
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: 'url(https://images.unsplash.com/photo-1552664730-d307ca884978)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/92 to-background/82" />
+            </div>
+
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto text-center"
+              >
+                <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">
+                  Consultant Directory
                 </p>
-                <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-                  Start with a quick 15-minute call to find the right consultant for your business.
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
+                  Find the right AILCN consultant for your business.
                 </h1>
-                <p className="mx-auto mt-6 max-w-4xl text-lg leading-9 text-slate-700 sm:text-xl">
-                  Once matched, your consultant will reach out to schedule a free 90-minute Readiness Strategy session.
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                  Start with a quick 15-minute call. Once matched, your consultant will reach out to schedule a free 90-minute Readiness Strategy session.
                 </p>
-                <div className="mt-8">
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                   <a href={MATCHING_CALL_URL} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="min-w-[20rem] bg-[#1f2c57] text-white hover:bg-[#172042]">
+                    <Button size="lg" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
                       Get matched with an AILCN Consultant
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
+                  <Link to="/organizations">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
+                      For organizations
+                    </Button>
+                  </Link>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
 
-          <section className="border-b border-slate-200 bg-white">
+          <section className="py-14 bg-muted/50 border-y">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-              <div className="mx-auto flex max-w-6xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="mx-auto flex max-w-6xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+              >
                 <div className="max-w-3xl">
-                  <h2 className="text-3xl font-bold tracking-tight text-[#233a6b] sm:text-4xl">
+                  <h2 className="text-3xl md:text-4xl font-bold">
                     Browse the network by expertise, geography, and AI learning focus.
                   </h2>
-                  <p className="mt-3 text-lg leading-8 text-slate-600">
+                  <p className="mt-3 text-lg leading-8 text-muted-foreground">
                     Every listing is designed to make matching easier: clear specialization, location, credentials, and a concise snapshot of how each consultant helps organizations move forward.
                   </p>
                 </div>
 
                 <div className="w-full max-w-sm">
                   <div className="relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search by name, specialty, or city"
-                      className="h-12 border-slate-200 bg-white pl-11 shadow-sm"
+                      className="h-12 bg-card pl-11 shadow-sm"
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
 
@@ -258,59 +287,67 @@ const ConsultantDirectoryPage = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-6xl space-y-6">
                 {filteredConsultants.length === 0 ? (
-                  <Card className="border-slate-200 shadow-sm">
+                  <Card className="shadow-sm rounded-2xl">
                     <CardContent className="py-16 text-center">
-                      <p className="text-xl font-semibold text-[#233a6b]">No consultants match that search yet.</p>
-                      <p className="mt-2 text-slate-600">Try a different name, city, or area of expertise.</p>
+                      <p className="text-xl font-semibold">No consultants match that search yet.</p>
+                      <p className="mt-2 text-muted-foreground">Try a different name, city, or area of expertise.</p>
                     </CardContent>
                   </Card>
                 ) : (
-                  filteredConsultants.map((consultant) => (
-                    <Card
+                  filteredConsultants.map((consultant, index) => (
+                    <motion.div
                       key={consultant.id}
-                      className="overflow-hidden border border-[#c9d4e7] bg-white shadow-[0_14px_35px_rgba(35,58,107,0.08)]"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.03 }}
+                      viewport={{ once: true }}
                     >
-                      <CardContent className="p-0">
-                        <div className="grid gap-0 lg:grid-cols-[0.95fr_1.35fr]">
-                          <div className="border-b border-[#c9d4e7] bg-[#5c7aa3] p-6 text-white lg:border-b-0 lg:border-r lg:p-8">
-                            <p className="text-2xl font-bold leading-tight sm:text-3xl">
-                              {consultant.headline}
-                            </p>
-                            <div className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/16 px-4 py-2 text-sm font-semibold tracking-wide text-white/95">
-                              <MapPin className="h-4 w-4" />
-                              <span>{consultant.location}</span>
+                      <Card className="shadow-lg rounded-2xl transition-all duration-200 hover:shadow-xl">
+                        <CardContent className="p-8 lg:p-10">
+                          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.5fr] lg:gap-10">
+                            <div className="space-y-5">
+                              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <MapPin className="w-6 h-6 text-primary" />
+                              </div>
+                              <div>
+                                <p className="text-xl md:text-2xl font-semibold leading-tight">
+                                  {consultant.headline}
+                                </p>
+                                <p className="mt-4 text-sm uppercase tracking-[0.2em] text-muted-foreground">
+                                  {consultant.location}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div>
+                              <h3 className="text-3xl md:text-4xl font-bold leading-tight" style={{ letterSpacing: '-0.02em' }}>
+                                {consultant.name}
+                              </h3>
+                              {consultant.credentials ? (
+                                <p className="mt-2 text-xl md:text-2xl text-primary">
+                                  {consultant.credentials}
+                                </p>
+                              ) : null}
+                              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+                                {consultant.bio}
+                              </p>
                             </div>
                           </div>
-
-                          <div className="p-6 sm:p-8 lg:p-10">
-                            <h3 className="text-3xl leading-tight text-[#233a6b] sm:text-4xl">
-                              {consultant.name}
-                              {consultant.credentials ? ',' : ''}
-                            </h3>
-                            {consultant.credentials ? (
-                              <p className="mt-1 text-2xl leading-tight text-[#233a6b] sm:text-3xl">
-                                {consultant.credentials}
-                              </p>
-                            ) : null}
-                            <p className="mt-6 text-lg leading-8 text-slate-600">
-                              {consultant.bio}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
                   ))
                 )}
 
                 <div className="flex flex-col justify-center gap-4 pt-6 sm:flex-row">
                   <a href={MATCHING_CALL_URL} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="min-w-60">
+                    <Button size="lg" className="min-w-60 transition-all duration-200 active:scale-[0.98]">
                       Book a Matching Call
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
                   <Link to="/organizations">
-                    <Button size="lg" variant="outline" className="min-w-60">
+                    <Button size="lg" variant="outline" className="min-w-60 transition-all duration-200 active:scale-[0.98]">
                       Explore Organization Services
                     </Button>
                   </Link>
