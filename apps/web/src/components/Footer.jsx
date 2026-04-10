@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="space-y-4">
             <span className="text-lg font-bold text-white">AILCN</span>
             <p className="text-sm text-slate-400">
-              AI Leadership Certification Network
+              AI Learning Consultant Network
             </p>
           </div>
 
@@ -100,9 +100,16 @@ const Footer = () => {
                 <Mail className="w-4 h-4" />
                 <span>contact@ailcn.com</span>
               </li>
-              <li className="flex items-center space-x-2 text-sm text-slate-400">
-                <Linkedin className="w-4 h-4" />
-                <span>LinkedIn</span>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/ailcn/?viewAsMember=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-sm text-slate-400 hover:text-white transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                </a>
               </li>
             </ul>
           </div>

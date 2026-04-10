@@ -108,7 +108,7 @@ const SignupPage = () => {
             <CardHeader className="space-y-2 text-center pb-6">
               <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
               <CardDescription>
-                Join the AI Leadership Certification Network
+                Join the AI Learning Consultant Network
               </CardDescription>
             </CardHeader>
             <CardContent>

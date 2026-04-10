@@ -82,7 +82,7 @@ const ApplicantPage = () => {
     <>
       <Helmet>
         <title>Apply - AILCN</title>
-        <meta name="description" content="Apply to join the AI Leadership Certification Network." />
+        <meta name="description" content="Apply to join the AI Learning Consultant Network." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col">

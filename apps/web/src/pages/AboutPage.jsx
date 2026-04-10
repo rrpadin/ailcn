@@ -44,7 +44,7 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>About | AILCN - AI Leadership Certification Network</title>
+        <title>About | AILCN - AI Learning Consultant Network</title>
         <meta name="description" content="AILCN was built by AI practitioners who got tired of watching organizations waste money on unvetted consultants. Learn about our mission, values, and how we built a better way." />
       </Helmet>
 

@@ -73,7 +73,7 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>AILCN - AI Leadership Certification Network</title>
+        <title>AILCN - AI Learning Consultant Network</title>
         <meta name="description" content="Join the exclusive network of certified AI consultants and organizations leading the AI transformation." />
       </Helmet>
 
