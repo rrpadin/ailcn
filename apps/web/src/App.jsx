@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import HomePage from './pages/HomePage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ConsultantLandingPage from './pages/ConsultantLandingPage.jsx';
+import ConsultantDirectoryPage from './pages/ConsultantDirectoryPage.jsx';
 import OrganizationLandingPage from './pages/OrganizationLandingPage.jsx';
 import ApplicantPage from './pages/ApplicantPage.jsx';
 import MemberDashboard from './pages/MemberDashboard.jsx';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/consultants" element={<ConsultantLandingPage />} />
+          <Route path="/consultants/directory" element={<ConsultantDirectoryPage />} />
           <Route path="/organizations" element={<OrganizationLandingPage />} />
           <Route path="/applicants" element={<ApplicantPage />} />
           <Route path="/resources" element={<ResourcesPage />} />

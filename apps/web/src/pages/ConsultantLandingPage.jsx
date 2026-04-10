@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -94,6 +95,18 @@ const ConsultantLandingPage = () => {
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
                   Join a selective network of practitioners who deliver real AI transformation. Get certified, access pre-qualified opportunities, and work with organizations that value proven expertise.
                 </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link to="/consultants/directory">
+                    <Button size="lg" variant="outline" className="min-w-56">
+                      Browse Consultant Directory
+                    </Button>
+                  </Link>
+                  <a href="#apply">
+                    <Button size="lg" className="min-w-56">
+                      Apply to Join
+                    </Button>
+                  </a>
+                </div>
               </motion.div>
             </div>
           </section>
@@ -175,7 +188,7 @@ const ConsultantLandingPage = () => {
           </section>
 
           {/* Application Section */}
-          <section className="py-20 bg-muted/50">
+          <section id="apply" className="py-20 bg-muted/50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

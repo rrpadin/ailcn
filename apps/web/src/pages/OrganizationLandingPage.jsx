@@ -96,6 +96,11 @@ const OrganizationLandingPage = () => {
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
                   Stop guessing. Start with our AI readiness assessment. Get matched with certified consultants who understand your specific challenges and can help you move forward with confidence.
                 </p>
+                <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="min-w-72">
+                    AI Learning Readiness Snapshot (TM)
+                  </Button>
+                </a>
               </motion.div>
             </div>
           </section>
