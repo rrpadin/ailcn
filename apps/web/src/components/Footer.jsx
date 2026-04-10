@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Linkedin } from 'lucide-react';
+import { GraduationCap, Mail, Linkedin } from 'lucide-react';
 import { useNavigationLinks } from '@/hooks/useNavigationLinks';
 
 const Footer = () => {
@@ -99,6 +99,17 @@ const Footer = () => {
               <li className="flex items-center space-x-2 text-sm text-slate-400">
                 <Mail className="w-4 h-4" />
                 <span>contact@ailcn.com</span>
+              </li>
+              <li>
+                <a
+                  href="https://my.expandlms.com/default.aspx?encBrand=122505&name=AILCN_Academy_by_exitou_inc_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-sm text-slate-400 hover:text-white transition-colors"
+                >
+                  <GraduationCap className="w-4 h-4" />
+                  <span>Academy</span>
+                </a>
               </li>
               <li>
                 <a
