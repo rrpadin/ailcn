@@ -62,7 +62,8 @@ const AboutPage = () => {
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}>
-              <div className="absolute inset-0 bg-gradient-to-br from-background/97 via-background/93 to-background/80" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/96 via-background/88 to-background/58" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,36,78,0.10),rgba(23,36,78,0.28))]" />
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -70,27 +71,15 @@ const AboutPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center"
+                className="max-w-3xl"
               >
-                <div className="max-w-3xl">
-                  <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">About AILCN</p>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
-                    We built the network we wished existed
-                  </h1>
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    AILCN was founded by AI practitioners who watched too many organizations burn budget on consultants who couldn't deliver. We built a better way — rigorous certification, precise matching, and a network held to a real standard.
-                  </p>
-                </div>
-
-                <div className="justify-self-start lg:justify-self-end">
-                  <div className="rounded-[2rem] bg-primary/10 p-3 shadow-[0_18px_40px_rgba(45,62,112,0.18)] backdrop-blur">
-                    <img
-                      src="/ailcn-icon.png"
-                      alt="AILCN logo"
-                      className="h-40 w-40 rounded-[1.5rem] md:h-52 md:w-52"
-                    />
-                  </div>
-                </div>
+                <p className="text-sm font-semibold text-gold uppercase tracking-widest mb-4">About AILCN</p>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-foreground" style={{ letterSpacing: '-0.02em' }}>
+                  We built the network we wished existed
+                </h1>
+                <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-2xl">
+                  AILCN was founded by AI practitioners who watched too many organizations burn budget on consultants who couldn&apos;t deliver. We built a better way: rigorous certification, precise matching, and a network held to a real standard.
+                </p>
               </motion.div>
             </div>
           </section>
@@ -205,12 +194,12 @@ const AboutPage = () => {
                     <p className="text-sm text-muted-foreground">Across all certified consultant engagements</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>142</div>
+                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>26</div>
                     <p className="font-medium mb-1">Certified consultants</p>
-                    <p className="text-sm text-muted-foreground">Active members who passed our rigorous program</p>
+                    <p className="text-sm text-muted-foreground">Certified consultants in the network</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>$2.4M</div>
+                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>$1.4M</div>
                     <p className="font-medium mb-1">Average value delivered</p>
                     <p className="text-sm text-muted-foreground">Per engagement, measured against client goals</p>
                   </div>
