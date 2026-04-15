@@ -32,13 +32,13 @@ const DynamicLink = ({ linkData, fallbackUrl, onClick, children, className }) =>
 
 const HomePage = () => {
   const applyLink = {
-    url: 'https://calendly.com/exitouinc/new-meeting',
+    url: 'https://tally.so/r/Pd9WW1',
     link_type: 'external',
     open_in_new_tab: true,
   };
 
   const getStartedLink = {
-    url: 'https://tally.so/r/Pd9WW1',
+    url: 'https://tally.so/r/vGyArl',
     link_type: 'external',
     open_in_new_tab: true,
   };
@@ -122,7 +122,7 @@ const HomePage = () => {
                     onClick={() => handleCTAClick('start_assessment')}
                   >
                     <Button size="lg" variant="outline" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
-                      Start assessment
+                      Start AI Readiness Snapshot
                     </Button>
                   </DynamicLink>
                 </div>
@@ -261,7 +261,7 @@ const HomePage = () => {
                       <div className="mt-auto">
                         <DynamicLink linkData={getStartedLink} fallbackUrl="/organizations" onClick={() => handleCTAClick('start_assessment_card')}>
                           <Button variant="outline" className="w-full transition-all duration-200 active:scale-[0.98]">
-                            Start assessment
+                            Start AI Readiness Snapshot
                           </Button>
                         </DynamicLink>
                       </div>
@@ -397,7 +397,7 @@ const HomePage = () => {
                     onClick={() => handleCTAClick('start_assessment_final')}
                   >
                     <Button size="lg" variant="outline" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
-                      Start assessment
+                      Start AI Readiness Snapshot
                     </Button>
                   </DynamicLink>
                 </div>

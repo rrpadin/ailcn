@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Target, Eye, Shield, Users, Award } from 'lucide-react';
@@ -10,6 +9,9 @@ import Footer from '@/components/Footer';
 import pb from '@/lib/pocketbaseClient';
 
 const AboutPage = () => {
+  const applyLink = 'https://tally.so/r/Pd9WW1';
+  const readinessSnapshotLink = 'https://tally.so/r/vGyArl';
+
   useEffect(() => {
     pb.collection('analytics_events').create({
       event_type: 'page_view',
@@ -243,17 +245,17 @@ const AboutPage = () => {
                   Whether you're a consultant looking to join our network or an organization seeking proven AI expertise, the next step is simple.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/consultants">
+                  <a href={applyLink} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
                       Apply as consultant
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
-                  </Link>
-                  <Link to="/organizations">
+                  </a>
+                  <a href={readinessSnapshotLink} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" variant="outline" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
-                      Start assessment
+                      Start AI Readiness Snapshot
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </motion.div>
             </div>
