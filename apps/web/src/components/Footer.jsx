@@ -42,15 +42,11 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <img src="/ailcn-icon.png" alt="AILCN logo" className="h-14 w-14 rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.25)]" />
-              <div>
-                <span className="font-display text-2xl tracking-[0.08em] text-white">AILCN</span>
-                <p className="mt-2 text-[11px] uppercase tracking-[0.24em] text-slate-400">
-                  AI Learning Consultant Network
-                </p>
-              </div>
-            </div>
+            <img
+              src="/ailcn-lockup-transparent.png"
+              alt="AILCN logo"
+              className="h-16 w-auto object-contain"
+            />
             <p className="max-w-xs text-sm leading-6 text-slate-400">
               A vetted network for AI readiness, consultant certification, and stronger matches between capability and need.
             </p>
