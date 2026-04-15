@@ -168,8 +168,9 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-foreground/10 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-16 items-center justify-between py-3">
-          <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-            <div className="border-l-2 border-gold pl-3">
+          <Link to="/" className="flex items-center gap-3" onClick={closeMobileMenu}>
+            <img src="/ailcn-icon.png" alt="AILCN logo" className="h-11 w-11 rounded-xl shadow-sm" />
+            <div>
               <div className="font-display text-2xl leading-none tracking-[0.08em] text-primary">AILCN</div>
               <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">AI Learning Consultant Network</div>
             </div>

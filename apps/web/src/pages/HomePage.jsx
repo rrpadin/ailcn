@@ -230,7 +230,14 @@ const HomePage = () => {
                   <div className="absolute -left-5 top-8 hidden h-24 w-24 border border-gold/40 lg:block" />
                   <div className="absolute -right-4 bottom-6 hidden h-32 w-32 border border-primary/20 lg:block" />
                   <div className="relative border border-foreground/10 bg-background/85 p-6 shadow-[18px_18px_0_hsl(var(--gold)/0.10)] backdrop-blur">
-                    <p className="section-kicker text-gold">Why this exists</p>
+                    <div className="flex items-start justify-between gap-4">
+                      <p className="section-kicker text-gold">Why this exists</p>
+                      <img
+                        src="/ailcn-icon.png"
+                        alt="AILCN logo"
+                        className="h-16 w-16 rounded-2xl shadow-[0_10px_25px_rgba(45,62,112,0.18)]"
+                      />
+                    </div>
                     <div className="mt-4 space-y-5">
                       <div className="border-l-2 border-gold pl-4">
                         <p className="font-display text-2xl leading-tight text-foreground">Too much AI advice is still all theater.</p>
