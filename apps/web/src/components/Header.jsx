@@ -94,8 +94,8 @@ const Header = () => {
 
   const renderNavLink = (link, isMobile = false) => {
     const baseClasses = isMobile
-      ? `text-sm font-medium ${isActive(link.url) ? 'text-primary' : 'text-foreground'}`
-      : `text-sm font-medium transition-colors hover:text-primary ${isActive(link.url) ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`;
+      ? `text-sm font-medium uppercase tracking-[0.14em] ${isActive(link.url) ? 'text-primary' : 'text-foreground'}`
+      : `text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive(link.url) ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`;
 
     if (link.link_type === 'external') {
       return (
@@ -128,8 +128,8 @@ const Header = () => {
   const renderDynamicPageLink = (page, isMobile = false) => {
     const url = `/page/${page.slug}`;
     const baseClasses = isMobile
-      ? `text-sm font-medium ${isActive(url) ? 'text-primary' : 'text-foreground'}`
-      : `text-sm font-medium transition-colors hover:text-primary ${isActive(url) ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`;
+      ? `text-sm font-medium uppercase tracking-[0.14em] ${isActive(url) ? 'text-primary' : 'text-foreground'}`
+      : `text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive(url) ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`;
 
     return (
       <Link
@@ -146,8 +146,8 @@ const Header = () => {
   const renderConsultantDirectoryLink = (isMobile = false) => {
     const url = '/consultants/directory';
     const baseClasses = isMobile
-      ? `text-sm font-medium ${isActive(url) ? 'text-primary' : 'text-foreground'}`
-      : `text-sm font-medium transition-colors hover:text-primary ${isActive(url) ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`;
+      ? `text-sm font-medium uppercase tracking-[0.14em] ${isActive(url) ? 'text-primary' : 'text-foreground'}`
+      : `text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive(url) ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`;
 
     return (
       <Link
@@ -165,12 +165,13 @@ const Header = () => {
   const avatarUrl = currentUser?.avatar ? pb.files.getUrl(currentUser, currentUser.avatar) : null;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-foreground/10 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
-            <div className="flex items-center">
-              <span className="text-xl font-bold tracking-tight text-primary">AILCN</span>
+        <div className="flex min-h-16 items-center justify-between py-3">
+          <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
+            <div className="border-l-2 border-gold pl-3">
+              <div className="font-display text-2xl leading-none tracking-[0.08em] text-primary">AILCN</div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">AI Learning Consultant Network</div>
             </div>
           </Link>
 
@@ -185,30 +186,30 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <Link to="/" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>Home</Link>
-                    <Link to="/consultants" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/consultants') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>For Consultants</Link>
+                    <Link to="/" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive('/') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>Home</Link>
+                    <Link to="/consultants" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive('/consultants') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>For Consultants</Link>
                     {renderConsultantDirectoryLink(false)}
-                    <Link to="/organizations" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/organizations') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>For Organizations</Link>
-                    <Link to="/resources" className={`text-sm font-medium transition-colors hover:text-primary ${isActive('/resources') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>Resources</Link>
+                    <Link to="/organizations" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive('/organizations') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>For Organizations</Link>
+                    <Link to="/resources" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary ${isActive('/resources') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>Resources</Link>
                   </>
                 )}
                 {dynamicPages.map(page => renderDynamicPageLink(page, false))}
               </>
             ) : (
               <>
-                <Link to="/member/dashboard" className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/dashboard') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>
+                <Link to="/member/dashboard" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/dashboard') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>
                   <LayoutDashboard className="w-4 h-4" /> Dashboard
                 </Link>
-                <Link to="/member/announcements" className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/announcements') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>
+                <Link to="/member/announcements" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/announcements') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>
                   <Megaphone className="w-4 h-4" /> Announcements
                 </Link>
-                <Link to="/member/community" className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/community') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>
+                <Link to="/member/community" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/community') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>
                   <MessageSquare className="w-4 h-4" /> Community
                 </Link>
-                <Link to="/member/directory" className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/directory') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>
+                <Link to="/member/directory" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/directory') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>
                   <Users className="w-4 h-4" /> Directory
                 </Link>
-                <Link to="/member/messages" className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/messages') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>
+                <Link to="/member/messages" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/member/messages') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>
                   <div className="relative">
                     <Mail className="w-4 h-4" />
                     {unreadMessages > 0 && (
@@ -218,7 +219,7 @@ const Header = () => {
                   Messages
                 </Link>
                 {isAdmin && (
-                  <Link to="/admin/announcements" className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/admin/announcements') ? 'text-foreground border-b-2 border-primary pb-1' : 'text-muted-foreground'}`}>
+                  <Link to="/admin/announcements" className={`text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:text-primary flex items-center gap-1.5 ${isActive('/admin/announcements') ? 'text-foreground border-b border-gold pb-1' : 'text-muted-foreground'}`}>
                     Manage
                   </Link>
                 )}
@@ -231,20 +232,20 @@ const Header = () => {
             {!isAuthenticated ? (
               <>
                 <Link to="/login">
-                  <Button variant="ghost" size="sm" className="transition-all duration-200">
+                  <Button variant="ghost" size="sm" className="rounded-none text-xs uppercase tracking-[0.18em] transition-all duration-200">
                     Log in
                   </Button>
                 </Link>
 
                 {applyIsExternal ? (
                   <a href={applyUrl} target={applyTarget} rel={applyTarget ? "noopener noreferrer" : undefined}>
-                    <Button size="sm" className="transition-all duration-200">
+                    <Button size="sm" className="rounded-none border border-primary bg-primary px-4 text-xs uppercase tracking-[0.18em] transition-all duration-200">
                       Sign Up
                     </Button>
                   </a>
                 ) : (
                   <Link to="/signup">
-                    <Button size="sm" className="transition-all duration-200">
+                    <Button size="sm" className="rounded-none border border-primary bg-primary px-4 text-xs uppercase tracking-[0.18em] transition-all duration-200">
                       Sign Up
                     </Button>
                   </Link>

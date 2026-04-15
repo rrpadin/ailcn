@@ -38,18 +38,23 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[hsl(220,52%,13%)] text-slate-300">
+    <footer className="ink-panel border-t border-white/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <span className="text-lg font-bold text-white">AILCN</span>
-            <p className="text-sm text-slate-400">
+            <div className="border-l-2 border-gold pl-3">
+              <span className="font-display text-2xl tracking-[0.08em] text-white">AILCN</span>
+              <p className="mt-2 text-[11px] uppercase tracking-[0.24em] text-slate-400">
+                AI Learning Consultant Network
+              </p>
+            </div>
+            <p className="max-w-xs text-sm leading-6 text-slate-400">
               AI Learning Consultant Network
             </p>
           </div>
 
           <div>
-            <span className="text-sm font-semibold mb-4 block text-white">Quick links</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] mb-4 block text-white">Quick links</span>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-sm text-slate-400 hover:text-white transition-colors">
@@ -70,7 +75,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <span className="text-sm font-semibold mb-4 block text-white">Legal & About</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] mb-4 block text-white">Legal & About</span>
             <ul className="space-y-2">
               {loading ? (
                 <li className="text-sm text-slate-400 animate-pulse">Loading links...</li>
@@ -94,7 +99,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <span className="text-sm font-semibold mb-4 block text-white">Contact</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] mb-4 block text-white">Contact</span>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2 text-sm text-slate-400">
                 <Mail className="w-4 h-4" />
@@ -127,8 +132,8 @@ const Footer = () => {
         </div>
 
 
-        <div className="mt-8 pt-8 border-t border-slate-700">
-          <p className="text-sm text-slate-500 text-center">
+        <div className="mt-8 pt-8 border-t border-white/10">
+          <p className="text-sm text-slate-500 text-center uppercase tracking-[0.16em]">
             © 2026 AILCN. All rights reserved.
           </p>
         </div>

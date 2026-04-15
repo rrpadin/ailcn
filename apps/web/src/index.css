@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Cormorant+Garamond:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -95,6 +95,10 @@
 }
 
 @layer utilities {
+  .font-display {
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -113,6 +117,48 @@
 
   .ring-gold {
     --tw-ring-color: hsl(var(--gold));
+  }
+
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .radial-wash {
+    background-image:
+      radial-gradient(circle at top left, hsl(var(--gold) / 0.18), transparent 36%),
+      radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.12), transparent 32%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary) / 0.55));
+  }
+
+  .ink-panel {
+    background:
+      linear-gradient(180deg, hsl(220 47% 14%), hsl(223 41% 10%));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .section-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow-rule {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .eyebrow-rule::before {
+    content: "";
+    display: inline-block;
+    width: 2.5rem;
+    height: 1px;
+    background: hsl(var(--gold));
   }
 }
 
