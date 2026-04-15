@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -94,11 +95,18 @@ const ConsultantLandingPage = () => {
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
                   Join a selective network of practitioners who deliver real AI transformation. Get certified, access pre-qualified opportunities, and work with organizations that value proven expertise.
                 </p>
-                <a href="#apply">
-                  <Button size="lg" className="min-w-56">
-                    Apply to Join
-                  </Button>
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href="#apply">
+                    <Button size="lg" className="min-w-56">
+                      Apply to Join
+                    </Button>
+                  </a>
+                  <Link to="/consultants/program">
+                    <Button size="lg" variant="outline" className="min-w-56">
+                      Explore the Program
+                    </Button>
+                  </Link>
+                </div>
               </motion.div>
             </div>
           </section>
@@ -120,7 +128,7 @@ const ConsultantLandingPage = () => {
                       <Award className="w-12 h-12 text-primary mb-6" />
                       <h3 className="text-xl font-semibold mb-4">Rigorous certification</h3>
                       <p className="text-muted-foreground leading-relaxed mb-4">
-                        Our 90-day program isn't just theory. You'll work on real projects, build proven capabilities, and demonstrate results that matter to organizations.
+                        Our 90-day program isn&apos;t just theory. You&apos;ll work on real projects, build proven capabilities, and demonstrate results that matter to organizations.
                       </p>
                       <ul className="space-y-2">
                         <li className="flex items-start text-sm">
@@ -170,10 +178,49 @@ const ConsultantLandingPage = () => {
                       <TrendingUp className="w-12 h-12 text-primary mb-6 mx-auto" />
                       <h3 className="text-xl font-semibold mb-4 text-center">Build lasting value</h3>
                       <p className="text-muted-foreground leading-relaxed text-center">
-                        This isn't about quick wins. It's about building a reputation that opens doors. Organizations trust AILCN-certified consultants because they know the certification means something. That trust translates to better opportunities, stronger relationships, and sustainable growth.
+                        This isn&apos;t about quick wins. It&apos;s about building a reputation that opens doors. Organizations trust AILCN-certified consultants because they know the certification means something. That trust translates to better opportunities, stronger relationships, and sustainable growth.
                       </p>
                     </CardContent>
                   </Card>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Program Preview Section */}
+          <section className="py-20 bg-secondary/35 border-y border-foreground/10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+              >
+                <div>
+                  <p className="section-kicker text-gold">Program details</p>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">
+                    See what the certification actually helps you build.
+                  </h2>
+                  <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                    We broke out the full program into a dedicated page so you can explore the consulting model, technology ecosystem, revenue opportunities, executive-facing tools, and credential assets in more depth.
+                  </p>
+                  <div className="mt-8">
+                    <Link to="/consultants/program">
+                      <Button size="lg" className="rounded-none px-7 py-6 text-sm uppercase tracking-[0.18em]">
+                        View Full Program Details
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="overflow-hidden border border-foreground/10 bg-background p-4 shadow-sm">
+                  <img
+                    src="/expandpro-consultant-dashboard.png"
+                    alt="ExpandPro consultant dashboard preview"
+                    className="w-full rounded-xl border border-foreground/10"
+                  />
                 </div>
               </motion.div>
             </div>
@@ -196,7 +243,6 @@ const ConsultantLandingPage = () => {
                   </p>
                 </div>
 
-                {/* Step indicators */}
                 <div className="flex items-center justify-center gap-4 mb-10">
                   <div className="flex items-center gap-2">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${submitted ? 'bg-primary/20 text-primary' : 'bg-primary text-primary-foreground'}`}>
