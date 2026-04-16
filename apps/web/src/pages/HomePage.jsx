@@ -44,7 +44,7 @@ const engagementOptions = [
     title: 'Consultants',
     description: 'You have 5+ years of experience and want to build an AI consulting practice tied to revenue.',
     cta: 'Take Consultant Readiness Assessment',
-    linkData: 'applyLink',
+    linkData: 'consultantPageLink',
     fallbackUrl: '/consultants',
     clickType: 'apply_consultant_card',
     variant: 'default',
@@ -54,7 +54,7 @@ const engagementOptions = [
     title: 'Organizations',
     description: 'You need a clear, paid starting point before committing to AI investments.',
     cta: 'Start Snapshot',
-    linkData: 'getStartedLink',
+    linkData: 'organizationPageLink',
     fallbackUrl: '/organizations',
     clickType: 'start_assessment_card',
     variant: 'outline',
@@ -127,6 +127,18 @@ const HomePage = () => {
     url: 'https://tally.so/r/vGyArl',
     link_type: 'external',
     open_in_new_tab: true,
+  };
+
+  const consultantPageLink = {
+    url: '/consultants',
+    link_type: 'internal',
+    open_in_new_tab: false,
+  };
+
+  const organizationPageLink = {
+    url: '/organizations',
+    link_type: 'internal',
+    open_in_new_tab: false,
   };
 
   useEffect(() => {
@@ -206,6 +218,90 @@ const HomePage = () => {
                     </Button>
                   </DynamicLink>
                 </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Ways to Engage Section */}
+          <section className="py-20 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="space-y-10"
+              >
+                <div className="max-w-2xl">
+                  <span className="eyebrow-rule section-kicker text-gold">Entry points</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">There are only two valid entry points.</h2>
+                </div>
+
+                <div className="grid gap-px overflow-hidden border border-foreground/10 bg-foreground/10 lg:grid-cols-2">
+                  {engagementOptions.map(option => {
+                    const Icon = option.icon;
+                    const link = option.linkData === 'consultantPageLink'
+                      ? consultantPageLink
+                      : option.linkData === 'organizationPageLink'
+                        ? organizationPageLink
+                        : option.linkData === 'applyLink'
+                          ? applyLink
+                          : getStartedLink;
+
+                    return (
+                      <div key={option.title} className={`p-8 ${option.variant === 'default' ? 'ink-panel' : 'bg-background'}`}>
+                        <div className="flex items-center justify-between">
+                          <Icon className={`h-10 w-10 ${option.variant === 'default' ? 'text-gold' : 'text-primary'}`} />
+                          <span className={`section-kicker ${option.variant === 'default' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                            {option.variant === 'default' ? 'Selective' : 'Open'}
+                          </span>
+                        </div>
+                        <h3 className={`font-display mt-8 text-3xl leading-tight ${option.variant === 'default' ? 'text-primary-foreground' : 'text-foreground'}`}>{option.title}</h3>
+                        <p className={`mt-4 min-h-[84px] text-lg leading-7 ${option.variant === 'default' ? 'text-primary-foreground/78' : 'text-muted-foreground'}`}>
+                          {option.description}
+                        </p>
+                        <div className="mt-8">
+                          <DynamicLink linkData={link} fallbackUrl={option.fallbackUrl} onClick={() => handleCTAClick(option.clickType)}>
+                            <Button
+                              variant={option.variant}
+                              className={`w-full rounded-none px-5 py-5 text-[11px] sm:text-xs uppercase tracking-[0.08em] whitespace-normal leading-5 ${
+                                option.variant === 'default'
+                                  ? 'border border-gold/40 bg-gold text-primary shadow-none hover:bg-gold/90'
+                                  : 'border-foreground/20 bg-transparent'
+                              }`}
+                            >
+                              {option.cta}
+                            </Button>
+                          </DynamicLink>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="grid gap-8 border border-foreground/10 bg-secondary/35 p-8 lg:grid-cols-[0.8fr_1.2fr]">
+                  <div>
+                    <span className="section-kicker text-gold">Organization snapshot</span>
+                    <h3 className="font-display mt-4 text-3xl leading-tight">AI isn&apos;t the problem. Execution is.</h3>
+                    <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                      Most organizations are stuck between experimentation and real impact.
+                    </p>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {organizationImpactStats.map((stat, index) => (
+                      <div
+                        key={stat.title}
+                        className={index === organizationImpactStats.length - 1 ? 'sm:col-span-2 sm:max-w-sm sm:justify-self-center' : undefined}
+                      >
+                        <div className="font-display text-4xl leading-none text-primary">{stat.value}</div>
+                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-foreground">{stat.title}</p>
+                        <p className="mt-2 text-xs leading-5 text-muted-foreground">{stat.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-lg leading-8 text-muted-foreground">
+                  If neither applies, this is not the right entry point.
+                </p>
               </motion.div>
             </div>
           </section>
@@ -336,84 +432,6 @@ const HomePage = () => {
                     </motion.div>
                   ))}
                 </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Ways to Engage Section */}
-          <section className="py-20 md:py-24">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="space-y-10"
-              >
-                <div className="max-w-2xl">
-                  <span className="eyebrow-rule section-kicker text-gold">Entry points</span>
-                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">There are only two valid entry points.</h2>
-                </div>
-
-                <div className="grid gap-px overflow-hidden border border-foreground/10 bg-foreground/10 lg:grid-cols-2">
-                  {engagementOptions.map(option => {
-                    const Icon = option.icon;
-                    const link = option.linkData === 'applyLink' ? applyLink : getStartedLink;
-
-                    return (
-                      <div key={option.title} className={`p-8 ${option.variant === 'default' ? 'ink-panel' : 'bg-background'}`}>
-                        <div className="flex items-center justify-between">
-                          <Icon className={`h-10 w-10 ${option.variant === 'default' ? 'text-gold' : 'text-primary'}`} />
-                          <span className={`section-kicker ${option.variant === 'default' ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
-                            {option.variant === 'default' ? 'Selective' : 'Open'}
-                          </span>
-                        </div>
-                        <h3 className={`font-display mt-8 text-3xl leading-tight ${option.variant === 'default' ? 'text-primary-foreground' : 'text-foreground'}`}>{option.title}</h3>
-                        <p className={`mt-4 min-h-[84px] text-lg leading-7 ${option.variant === 'default' ? 'text-primary-foreground/78' : 'text-muted-foreground'}`}>
-                          {option.description}
-                        </p>
-                        <div className="mt-8">
-                          <DynamicLink linkData={link} fallbackUrl={option.fallbackUrl} onClick={() => handleCTAClick(option.clickType)}>
-                            <Button
-                              variant={option.variant}
-                              className={`w-full rounded-none px-5 py-6 text-xs uppercase tracking-[0.16em] whitespace-normal leading-5 ${
-                                option.variant === 'default'
-                                  ? 'border border-gold/40 bg-gold text-primary shadow-none hover:bg-gold/90'
-                                  : 'border-foreground/20 bg-transparent'
-                              }`}
-                            >
-                              {option.cta}
-                            </Button>
-                          </DynamicLink>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="grid gap-8 border border-foreground/10 bg-secondary/35 p-8 lg:grid-cols-[0.8fr_1.2fr]">
-                  <div>
-                    <span className="section-kicker text-gold">Organization snapshot</span>
-                    <h3 className="font-display mt-4 text-3xl leading-tight">AI isn&apos;t the problem. Execution is.</h3>
-                    <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                      Most organizations are stuck between experimentation and real impact.
-                    </p>
-                  </div>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {organizationImpactStats.map((stat, index) => (
-                      <div
-                        key={stat.title}
-                        className={index === organizationImpactStats.length - 1 ? 'sm:col-span-2 sm:max-w-sm sm:justify-self-center' : undefined}
-                      >
-                        <div className="font-display text-4xl leading-none text-primary">{stat.value}</div>
-                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-foreground">{stat.title}</p>
-                        <p className="mt-2 text-xs leading-5 text-muted-foreground">{stat.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <p className="text-lg leading-8 text-muted-foreground">
-                  If neither applies, this is not the right entry point.
-                </p>
               </motion.div>
             </div>
           </section>
