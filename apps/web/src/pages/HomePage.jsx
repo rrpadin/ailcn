@@ -90,9 +90,31 @@ const engagementOptions = [
 ];
 
 const proofPoints = [
-  { value: '87%', label: 'reported success rate in AI implementation' },
-  { value: '26', label: 'certified consultants in the network' },
-  { value: '$1.4M', label: 'average value delivered per engagement' },
+  {
+    value: '50%',
+    title: 'Time to competency',
+    description: 'Faster when AI is aligned to role-based workflows',
+  },
+  {
+    value: '25%+',
+    title: 'Performance improvement',
+    description: 'Within the first 90 days of implementation',
+  },
+  {
+    value: '2-5X',
+    title: 'Return on AI investment',
+    description: 'When learning is tied directly to business outcomes',
+  },
+  {
+    value: '40%',
+    title: 'Reduction in tool waste',
+    description: 'From eliminating fragmented AI usage',
+  },
+  {
+    value: '80%+',
+    title: 'Increase in AI adoption and trust',
+    description: 'When governance and workflows are clearly defined',
+  },
 ];
 
 const DynamicLink = ({ linkData, fallbackUrl, onClick, children, className }) => {
@@ -240,16 +262,20 @@ const HomePage = () => {
                     </div>
                     <div className="mt-4 space-y-5">
                       <div className="border-l-2 border-gold pl-4">
-                        <p className="font-display text-2xl leading-tight text-foreground">Too much AI advice is still all theater.</p>
+                        <p className="font-display text-2xl leading-tight text-foreground">AI is not the problem. Execution is.</p>
                         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                          Organizations are sold ambition before readiness. Consultants are rewarded for certainty before capability. We built a network around the opposite instinct.
+                          Most organizations are stuck between experimentation and real impact. AILCN exists to close that gap with role-based workflows, clearer governance, and measurable business outcomes.
                         </p>
                       </div>
-                      <div className="grid gap-4 border-t border-foreground/10 pt-5 sm:grid-cols-3">
-                        {proofPoints.map(point => (
-                          <div key={point.label}>
+                      <div className="grid gap-4 border-t border-foreground/10 pt-5 sm:grid-cols-2">
+                        {proofPoints.map((point, index) => (
+                          <div
+                            key={point.title}
+                            className={index === proofPoints.length - 1 ? 'sm:col-span-2 sm:max-w-sm sm:justify-self-center' : undefined}
+                          >
                             <div className="font-display text-4xl leading-none text-primary">{point.value}</div>
-                            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">{point.label}</p>
+                            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-foreground">{point.title}</p>
+                            <p className="mt-2 text-xs leading-5 text-muted-foreground">{point.description}</p>
                           </div>
                         ))}
                       </div>
@@ -422,11 +448,15 @@ const HomePage = () => {
                     </p>
                   </div>
 
-                  <div className="grid gap-px bg-white/10 sm:grid-cols-3">
-                    {proofPoints.map(point => (
-                      <div key={point.label} className="bg-white/5 p-6">
+                  <div className="grid gap-px bg-white/10 sm:grid-cols-2 xl:grid-cols-3">
+                    {proofPoints.map((point, index) => (
+                      <div
+                        key={point.title}
+                        className={`bg-white/5 p-6 ${index === proofPoints.length - 1 ? 'sm:col-span-2 xl:col-span-1' : ''}`}
+                      >
                         <div className="font-display text-5xl text-gold">{point.value}</div>
-                        <p className="mt-3 text-sm uppercase tracking-[0.18em] text-primary-foreground/68">{point.label}</p>
+                        <p className="mt-3 text-sm uppercase tracking-[0.18em] text-primary-foreground/88">{point.title}</p>
+                        <p className="mt-3 text-sm leading-6 text-primary-foreground/68">{point.description}</p>
                       </div>
                     ))}
                   </div>

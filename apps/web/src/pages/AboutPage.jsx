@@ -8,6 +8,34 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import pb from '@/lib/pocketbaseClient';
 
+const impactStats = [
+  {
+    value: '50%',
+    title: 'Time to competency',
+    description: 'Faster when AI is aligned to role-based workflows',
+  },
+  {
+    value: '25%+',
+    title: 'Performance improvement',
+    description: 'Within the first 90 days of implementation',
+  },
+  {
+    value: '2-5X',
+    title: 'Return on AI investment',
+    description: 'When learning is tied directly to business outcomes',
+  },
+  {
+    value: '40%',
+    title: 'Reduction in tool waste',
+    description: 'From eliminating fragmented AI usage',
+  },
+  {
+    value: '80%+',
+    title: 'Increase in AI adoption and trust',
+    description: 'When governance and workflows are clearly defined',
+  },
+];
+
 const AboutPage = () => {
   const applyLink = 'https://tally.so/r/Pd9WW1';
   const readinessSnapshotLink = 'https://tally.so/r/vGyArl';
@@ -182,27 +210,27 @@ const AboutPage = () => {
                 viewport={{ once: true }}
                 className="max-w-4xl mx-auto"
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">The network in numbers</h2>
-                <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">
-                  These numbers reflect our commitment to only certifying consultants who can actually deliver.
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Why this exists</h2>
+                <p className="text-center text-muted-foreground mb-3 max-w-2xl mx-auto text-lg">
+                  AI is not the problem. Execution is.
+                </p>
+                <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+                  Most organizations are stuck between experimentation and real impact. These are the outcomes that become possible when AI is implemented with clear workflows, governance, and business alignment.
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="text-center">
-                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>87%</div>
-                    <p className="font-medium mb-1">Implementation success rate</p>
-                    <p className="text-sm text-muted-foreground">Across all certified consultant engagements</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>26</div>
-                    <p className="font-medium mb-1">Certified consultants</p>
-                    <p className="text-sm text-muted-foreground">Certified consultants in the network</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>$1.4M</div>
-                    <p className="font-medium mb-1">Average value delivered</p>
-                    <p className="text-sm text-muted-foreground">Per engagement, measured against client goals</p>
-                  </div>
+                <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                  {impactStats.map((stat, index) => (
+                    <div
+                      key={stat.title}
+                      className={`text-center rounded-2xl border border-foreground/10 bg-background/80 p-8 shadow-sm ${
+                        index === impactStats.length - 1 ? 'md:col-span-2 md:max-w-xl md:justify-self-center xl:col-span-1 xl:max-w-none' : ''
+                      }`}
+                    >
+                      <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>{stat.value}</div>
+                      <p className="font-medium mb-2 uppercase tracking-[0.14em]">{stat.title}</p>
+                      <p className="text-sm text-muted-foreground">{stat.description}</p>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             </div>
