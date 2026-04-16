@@ -2,89 +2,81 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Users, Award, TrendingUp, Shield, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Users, Award, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import pb from '@/lib/pocketbaseClient';
 
-const audienceColumns = [
+const consultantSections = [
   {
     icon: Users,
-    title: 'For consultants',
-    intro: 'Prove you can lead AI work that survives contact with reality.',
-    body: 'Our certification path is built for practitioners who want rigor, signal, and access to serious organizations instead of another badge mill.',
+    title: 'This is a business model, not a certification.',
+    intro: 'You do not join AILCN to learn about AI. You join to build a consulting practice that sells and delivers it.',
+    body: 'Start with a $1,500 AI Readiness Assessment. Use it to open larger consulting engagements ($10K-$50K+). Deliver using AILCN tools, frameworks, and ecosystem partners.',
     bullets: [
-      'Structured certification with live application, not passive coursework',
-      'Exposure to organizations that already know they need credible AI help',
-      'A network standard that makes your work easier to trust',
+      'Structured offer you can sell immediately',
+      'Clear path from first conversation to paid engagement',
+      'Access to organizations already looking for credible AI execution',
     ],
+    note: 'If you are not comfortable selling into business outcomes, this will not work.',
   },
   {
-    icon: TrendingUp,
-    title: 'For organizations',
-    intro: 'Start with an honest read on where AI can actually move the business.',
-    body: 'The AI Readiness Snapshot clarifies capability, gaps, and priorities before you spend time or budget on the wrong engagement.',
+    icon: Award,
+    title: 'A 90-day build phase to launch your consulting offer.',
+    intro: 'This is not coursework. It is build + sell + deliver.',
+    body: 'You will leave with a sellable AI Readiness Assessment, pricing, positioning, proposal structure, and tools to deliver and measure outcomes.',
     bullets: [
-      'A practical readiness snapshot grounded in execution',
-      'Matching based on fit, not whoever shouts the loudest',
-      'A clearer path from exploration to implementation',
+      'A sellable AI Readiness Assessment',
+      'Pricing, positioning, and proposal structure',
+      'Tools to deliver and measure outcomes',
     ],
+    note: 'The expectation is not passive learning. The expectation is launching an offer you can take into the market.',
   },
 ];
 
 const processSteps = [
   {
     number: '01',
-    title: 'Apply or take the snapshot',
-    description: 'Consultants complete the application assessment. Organizations take the AI Readiness Snapshot to establish baseline maturity and opportunity.',
+    title: 'Enter through application or snapshot',
+    description: 'Consultants apply. Organizations start with a paid readiness assessment.',
   },
   {
     number: '02',
-    title: 'We assess with teeth',
-    description: 'We review substance, not polish. Experience, operating judgment, and evidence matter more than buzzwords or résumé theater.',
+    title: 'We qualify aggressively',
+    description: 'We filter for real operators, not surface-level AI familiarity.',
   },
   {
     number: '03',
-    title: 'We shape the right match',
-    description: 'Consultants enter the certification path. Organizations get clarity on needs, constraints, and where vetted expertise can create traction.',
+    title: 'First deal comes early',
+    description: 'Consultants are expected to land an initial paid engagement quickly using the AILCN entry offer.',
   },
   {
     number: '04',
-    title: 'The work begins on firmer ground',
-    description: 'Instead of starting from vague ambition, both sides move forward with standards, shared language, and a more credible path to outcomes.',
+    title: 'Expand into larger work',
+    description: 'Engagements grow into implementation, performance tracking, and ongoing advisory.',
   },
 ];
 
 const engagementOptions = [
   {
-    icon: Award,
-    title: 'AI Readiness Snapshot',
-    description: 'A fast, plainspoken diagnostic for leadership teams that need signal before strategy decks.',
-    cta: 'Start AI Readiness Snapshot',
-    linkData: 'getStartedLink',
-    fallbackUrl: '/organizations',
-    clickType: 'start_assessment_card',
-    variant: 'outline',
-  },
-  {
     icon: Shield,
-    title: 'Consultant certification',
-    description: 'A selective path for consultants who want to be measured by the quality of the work, not the size of the claim.',
-    cta: 'Apply now',
+    title: 'Consultants',
+    description: 'You have 5+ years of experience and want to build an AI consulting practice tied to revenue.',
+    cta: 'Apply',
     linkData: 'applyLink',
     fallbackUrl: '/consultants',
     clickType: 'apply_consultant_card',
     variant: 'default',
   },
   {
-    icon: Sparkles,
-    title: 'Direct engagement',
-    description: 'Already know the shape of the problem? Bring us in for a direct conversation on enterprise AI priorities and execution.',
-    cta: 'Contact us',
-    linkData: 'bookConsultationLink',
-    fallbackUrl: '/contact',
-    clickType: 'contact_us_card',
+    icon: Award,
+    title: 'Organizations',
+    description: 'You need a clear, paid starting point before committing to AI investments.',
+    cta: 'Start Snapshot',
+    linkData: 'getStartedLink',
+    fallbackUrl: '/organizations',
+    clickType: 'start_assessment_card',
     variant: 'outline',
   },
 ];
@@ -151,12 +143,6 @@ const HomePage = () => {
     open_in_new_tab: true,
   };
 
-  const bookConsultationLink = {
-    url: 'https://calendly.com/exitouinc/initial-consultation',
-    link_type: 'external',
-    open_in_new_tab: true,
-  };
-
   useEffect(() => {
     pb.collection('analytics_events').create({
       event_type: 'page_view',
@@ -205,10 +191,13 @@ const HomePage = () => {
                 <div className="max-w-3xl">
                   <span className="eyebrow-rule section-kicker text-gold">A network with standards</span>
                   <h1 className="font-display mt-6 max-w-4xl text-5xl leading-[0.92] text-foreground md:text-7xl lg:text-[5.5rem]" style={{ letterSpacing: '-0.03em' }}>
-                    AI guidance should feel more like a charter than a sales funnel.
+                    AI consulting should produce revenue, not just recommendations.
                   </h1>
                   <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-                    AILCN certifies consultants who can deliver real transformation and gives organizations an honest starting point before the expensive decisions begin.
+                    AILCN is a selective network for experienced professionals who want to sell and deliver AI work tied directly to business outcomes.
+                  </p>
+                  <p className="mt-4 max-w-2xl border-l-2 border-gold pl-4 text-sm uppercase tracking-[0.18em] text-foreground">
+                    Not for trainers, course creators, or content-led consultants.
                   </p>
                   <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                     <DynamicLink
@@ -235,15 +224,15 @@ const HomePage = () => {
                   <div className="mt-10 grid max-w-2xl gap-6 border-t border-foreground/10 pt-6 text-sm text-muted-foreground sm:grid-cols-3">
                     <div>
                       <div className="section-kicker text-foreground">For consultants</div>
-                      <p className="mt-2 leading-6">A rigorous path built to separate practiced operators from polished talkers.</p>
+                      <p className="mt-2 leading-6">A path to package, price, and sell AI work tied to revenue and operating metrics.</p>
                     </div>
                     <div>
                       <div className="section-kicker text-foreground">For organizations</div>
-                      <p className="mt-2 leading-6">A clearer baseline before budget, vendors, and internal politics start shaping the conversation.</p>
+                      <p className="mt-2 leading-6">A paid starting point before budget, vendors, and AI tooling decisions outrun business clarity.</p>
                     </div>
                     <div>
                       <div className="section-kicker text-foreground">For both</div>
-                      <p className="mt-2 leading-6">Higher standards, better matching, and fewer expensive guesses.</p>
+                      <p className="mt-2 leading-6">Defined entry points, commercial discipline, and a path to measurable ROI.</p>
                     </div>
                   </div>
                 </div>
@@ -262,10 +251,13 @@ const HomePage = () => {
                     </div>
                     <div className="mt-4 space-y-5">
                       <div className="border-l-2 border-gold pl-4">
-                        <p className="font-display text-2xl leading-tight text-foreground">AI is not the problem. Execution is.</p>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                          Most organizations are stuck between experimentation and real impact. AILCN exists to close that gap with role-based workflows, clearer governance, and measurable business outcomes.
-                        </p>
+                        <p className="font-display text-2xl leading-tight text-foreground">AI is not the problem. Execution tied to revenue is.</p>
+                        <div className="mt-2 space-y-3 text-sm leading-6 text-muted-foreground">
+                          <p>Most organizations are stuck between experimentation and impact.</p>
+                          <p>Most consultants are stuck selling workshops instead of outcomes.</p>
+                          <p>AILCN exists to fix both sides: give organizations a clear starting point tied to business metrics and give consultants a structured way to sell and deliver real AI work.</p>
+                          <p className="text-foreground">Every engagement starts with a defined entry point and a path to measurable ROI.</p>
+                        </div>
                       </div>
                       <div className="grid gap-4 border-t border-foreground/10 pt-5 sm:grid-cols-2">
                         {proofPoints.map((point, index) => (
@@ -286,7 +278,7 @@ const HomePage = () => {
             </div>
           </section>
 
-          {/* Audience Section */}
+          {/* Consultant Section */}
           <section className="py-20 md:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -297,15 +289,15 @@ const HomePage = () => {
                 className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]"
               >
                 <div>
-                  <span className="eyebrow-rule section-kicker text-gold">Two entry points</span>
-                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">Different audiences. Same demand for substance.</h2>
+                  <span className="eyebrow-rule section-kicker text-gold">Consultant model</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">This is a business model, not a certification.</h2>
                   <p className="mt-5 max-w-md text-lg leading-8 text-muted-foreground">
-                    The site should feel less like a software checkout flow and more like an institution setting expectations. This section does that work upfront.
+                    You do not join AILCN to learn about AI. You join to build a consulting practice that sells and delivers it.
                   </p>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2">
-                  {audienceColumns.map(column => {
+                  {consultantSections.map(column => {
                     const Icon = column.icon;
 
                     return (
@@ -325,6 +317,9 @@ const HomePage = () => {
                             </li>
                           ))}
                         </ul>
+                        <p className="mt-6 border-t border-foreground/10 pt-5 text-sm leading-6 text-foreground">
+                          {column.note}
+                        </p>
                       </article>
                     );
                   })}
@@ -345,9 +340,9 @@ const HomePage = () => {
               >
                 <div>
                   <span className="eyebrow-rule section-kicker text-gold">How it works</span>
-                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">A process designed to slow down bad decisions.</h2>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">Commercial entry first. Bigger work after.</h2>
                   <p className="mt-5 max-w-md text-lg leading-8 text-muted-foreground">
-                    We are not trying to manufacture urgency. The goal is to improve fit, sharpen expectations, and reduce noise before the real work starts.
+                    The point is not to create activity. The point is to create a paid entry offer that leads into larger, outcome-based engagements.
                   </p>
                 </div>
 
@@ -384,14 +379,17 @@ const HomePage = () => {
                 className="space-y-10"
               >
                 <div className="max-w-2xl">
-                  <span className="eyebrow-rule section-kicker text-gold">Ways to engage</span>
-                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">Choose the path that matches the work in front of you.</h2>
+                  <span className="eyebrow-rule section-kicker text-gold">Entry points</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">There are only two valid entry points.</h2>
+                  <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                    If neither applies, this is not the right entry point.
+                  </p>
                 </div>
 
-                <div className="grid gap-px overflow-hidden border border-foreground/10 bg-foreground/10 lg:grid-cols-3">
+                <div className="grid gap-px overflow-hidden border border-foreground/10 bg-foreground/10 lg:grid-cols-2">
                   {engagementOptions.map(option => {
                     const Icon = option.icon;
-                    const link = option.linkData === 'applyLink' ? applyLink : option.linkData === 'getStartedLink' ? getStartedLink : bookConsultationLink;
+                    const link = option.linkData === 'applyLink' ? applyLink : getStartedLink;
 
                     return (
                       <div key={option.title} className={`p-8 ${option.variant === 'default' ? 'ink-panel' : 'bg-background'}`}>
@@ -402,7 +400,7 @@ const HomePage = () => {
                           </span>
                         </div>
                         <h3 className={`font-display mt-8 text-3xl leading-tight ${option.variant === 'default' ? 'text-primary-foreground' : 'text-foreground'}`}>{option.title}</h3>
-                        <p className={`mt-4 min-h-[84px] leading-7 ${option.variant === 'default' ? 'text-primary-foreground/78' : 'text-muted-foreground'}`}>
+                        <p className={`mt-4 min-h-[84px] text-lg leading-7 ${option.variant === 'default' ? 'text-primary-foreground/78' : 'text-muted-foreground'}`}>
                           {option.description}
                         </p>
                         <div className="mt-8">
@@ -427,7 +425,7 @@ const HomePage = () => {
             </div>
           </section>
 
-          {/* Authority & Proof Section */}
+          {/* Standards Section */}
           <section className="py-20 md:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -439,26 +437,38 @@ const HomePage = () => {
               >
                 <div className="grid gap-10 p-8 md:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:p-16">
                   <div>
-                    <span className="eyebrow-rule section-kicker text-gold">Proof and posture</span>
+                    <span className="eyebrow-rule section-kicker text-gold">Standards</span>
                     <h2 className="font-display mt-5 text-4xl leading-tight text-primary-foreground md:text-5xl">
-                      Built by people who have seen what bad AI buying decisions cost.
+                      We prioritize standards over volume.
                     </h2>
                     <p className="mt-5 max-w-lg text-lg leading-8 text-primary-foreground/78">
-                      The value of the network is not just access. It is selectivity, candor, and the discipline to tell both consultants and organizations when something is not ready yet.
+                      This is not an open marketplace. We are building a network of consultants who can sell into real business problems, deliver measurable outcomes, and operate credibly with executive stakeholders.
                     </p>
                   </div>
 
-                  <div className="grid gap-px bg-white/10 sm:grid-cols-2 xl:grid-cols-3">
-                    {proofPoints.map((point, index) => (
-                      <div
-                        key={point.title}
-                        className={`bg-white/5 p-6 ${index === proofPoints.length - 1 ? 'sm:col-span-2 xl:col-span-1' : ''}`}
-                      >
-                        <div className="font-display text-5xl text-gold">{point.value}</div>
-                        <p className="mt-3 text-sm uppercase tracking-[0.18em] text-primary-foreground/88">{point.title}</p>
-                        <p className="mt-3 text-sm leading-6 text-primary-foreground/68">{point.description}</p>
-                      </div>
-                    ))}
+                  <div className="space-y-px bg-white/10">
+                    <div className="bg-white/5 p-6">
+                      <p className="text-sm uppercase tracking-[0.18em] text-primary-foreground/88">What the network requires</p>
+                      <ul className="mt-5 space-y-4 text-sm leading-6 text-primary-foreground/72">
+                        <li className="flex items-start gap-3">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" />
+                          <span>Sell into real business problems</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" />
+                          <span>Deliver measurable outcomes</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" />
+                          <span>Operate credibly with executive stakeholders</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white/5 p-6">
+                      <p className="font-display text-3xl leading-tight text-gold">
+                        That means fewer people, higher expectations, and real accountability.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -507,7 +517,7 @@ const HomePage = () => {
                 <span className="section-kicker text-gold">Ready to get started?</span>
                 <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">Pick the track that fits the work ahead.</h2>
                 <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-                  Consultants can apply through the assessment path. Organizations can begin with the AI Readiness Snapshot and get a more grounded next step.
+                  Consultants can apply if they want to build an AI consulting practice tied to revenue. Organizations can start with a paid AI Readiness Snapshot before making larger AI investments.
                 </p>
                 <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                   <DynamicLink
