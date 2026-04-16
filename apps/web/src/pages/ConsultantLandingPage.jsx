@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle2, Award, Users, TrendingUp, ArrowRight, FileText } from 'lucide-react';
+import { CheckCircle2, Award, Users, ArrowRight, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import Header from '@/components/Header';
@@ -14,6 +13,71 @@ import Footer from '@/components/Footer';
 import pb from '@/lib/pocketbaseClient';
 
 const INTERVIEW_URL = 'https://tally.so/r/Pd9WW1';
+const leaveWithCards = [
+  {
+    icon: Award,
+    title: 'A sellable consulting offer',
+    description: 'A structured AI Readiness Assessment you can take to market immediately.',
+  },
+  {
+    icon: Users,
+    title: 'A clear path to paid work',
+    description: 'From first conversation to initial deal to expanded engagement.',
+  },
+  {
+    icon: Award,
+    title: 'Executive-facing positioning',
+    description: 'Language, metrics, and framing tied to business outcomes, not training.',
+  },
+  {
+    icon: Users,
+    title: 'Access to real demand',
+    description: 'Organizations already looking for credible AI execution.',
+  },
+];
+
+const buildSteps = [
+  {
+    number: '01',
+    title: 'First deal',
+    description: 'You are expected to sell your first $1,500 assessment early.',
+  },
+  {
+    number: '02',
+    title: 'Executive positioning',
+    description: 'You learn to sell into business metrics leaders care about.',
+  },
+  {
+    number: '03',
+    title: 'Offer + pricing',
+    description: 'You package engagements that expand beyond the first deal.',
+  },
+  {
+    number: '04',
+    title: 'Market-ready',
+    description: 'You leave ready to sell and deliver, not still preparing.',
+  },
+];
+
+const fitBullets = [
+  'Have 5-20 years of professional experience',
+  'Have worked in L&D, HR, consulting, or operations',
+  'Can engage decision-makers directly',
+  'Want to move beyond training into advisory work',
+];
+
+const notFitBullets = [
+  'Focus primarily on content or courses',
+  'Avoid business conversations',
+  'Are looking for passive learning',
+  'Are not ready to sell',
+];
+
+const standardsBullets = [
+  'Fewer consultants',
+  'Higher expectations',
+  'Real accountability for results',
+];
 
 const ConsultantLandingPage = () => {
   const [formData, setFormData] = useState({
@@ -73,7 +137,7 @@ const ConsultantLandingPage = () => {
     <>
       <Helmet>
         <title>For consultants - AILCN</title>
-        <meta name="description" content="Join the exclusive network of certified AI consultants. Get certified, gain access to pre-qualified organizations, and build your reputation." />
+        <meta name="description" content="Join AILCN to build an AI consulting practice tied to revenue, executive outcomes, and real client work." />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
@@ -90,28 +154,94 @@ const ConsultantLandingPage = () => {
                 className="max-w-4xl mx-auto text-center"
               >
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
-                  Build your reputation as a certified AI consultant
+                  Stop selling training. Start selling AI work tied to revenue.
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                  Join a selective network of practitioners who deliver real AI transformation. Get certified, access pre-qualified opportunities, and work with organizations that value proven expertise.
+                  AILCN is a selective network for experienced professionals building high-value AI consulting practices, not content businesses.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <p className="mx-auto max-w-3xl border-l-2 border-gold pl-4 text-left text-sm uppercase tracking-[0.16em] text-foreground">
+                  Not for trainers, course creators, or AI enthusiasts without real business experience.
+                </p>
+                <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-foreground">
+                  If you&apos;re not comfortable selling into executives or owning outcomes, this will not work.
+                </p>
+                <div className="mt-8 flex justify-center">
                   <a href="#apply">
                     <Button size="lg" className="min-w-56">
                       Apply to Join
                     </Button>
                   </a>
-                  <Link to="/consultants/program">
-                    <Button size="lg" variant="outline" className="min-w-56">
-                      Explore the Program
-                    </Button>
-                  </Link>
                 </div>
               </motion.div>
             </div>
           </section>
 
-          {/* Benefits Section */}
+          {/* What This Actually Is */}
+          <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-4xl mx-auto"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">This is a business model, not a certification.</h2>
+                <div className="space-y-4 text-lg leading-8 text-muted-foreground">
+                  <p>You don&apos;t join to learn AI.</p>
+                  <p>You join to build a consulting practice that sells and delivers it.</p>
+                  <p>Everything is designed to move you from conversation to paid engagement to expanded work.</p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* How You Make Money */}
+          <section className="py-20 bg-secondary/35 border-y border-foreground/10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start"
+              >
+                <div>
+                  <p className="section-kicker text-gold">Economic model</p>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">How you make money</h2>
+                </div>
+
+                <div className="border border-foreground/10 bg-background p-8 shadow-sm">
+                  <div className="space-y-4 text-lg leading-8 text-muted-foreground">
+                    <p>You start with a $1,500 AI Readiness Assessment.</p>
+                    <p>That assessment is designed to open larger engagements ($10K-$50K+) tied to implementation and performance.</p>
+                  </div>
+                  <div className="mt-8 border-t border-foreground/10 pt-6">
+                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground">You earn:</p>
+                    <ul className="mt-4 space-y-3">
+                      <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                        <span>Consulting revenue from your engagements</span>
+                      </li>
+                      <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                        <span>Commissions from platform adoption</span>
+                      </li>
+                      <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                        <span>Ongoing work through client expansion</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <p className="mt-6 text-sm leading-6 text-foreground">
+                    If you&apos;re not looking to sell and deliver real work, this model will not fit.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* What You Leave With */}
           <section className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -120,108 +250,125 @@ const ConsultantLandingPage = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">What you get</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">What you leave with</h2>
+                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                  {leaveWithCards.map(card => {
+                    const Icon = card.icon;
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
-                  <Card className="bg-card rounded-2xl shadow-lg">
-                    <CardContent className="p-8">
-                      <Award className="w-12 h-12 text-primary mb-6" />
-                      <h3 className="text-xl font-semibold mb-4">Rigorous certification</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        Our 90-day program isn&apos;t just theory. You&apos;ll work on real projects, build proven capabilities, and demonstrate results that matter to organizations.
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Hands-on project work with real clients</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Mentorship from experienced practitioners</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Portfolio of documented outcomes</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-card rounded-2xl shadow-lg">
-                    <CardContent className="p-8">
-                      <Users className="w-12 h-12 text-primary mb-6" />
-                      <h3 className="text-xl font-semibold mb-4">Network access</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        Connect with organizations actively seeking AI expertise. No cold outreach, no competing on price. Just qualified opportunities matched to your capabilities.
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Pre-qualified organization matches</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Exclusive network events and resources</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Ongoing professional development</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div className="max-w-3xl mx-auto">
-                  <Card className="bg-muted/50 rounded-2xl">
-                    <CardContent className="p-8">
-                      <TrendingUp className="w-12 h-12 text-primary mb-6 mx-auto" />
-                      <h3 className="text-xl font-semibold mb-4 text-center">Build lasting value</h3>
-                      <p className="text-muted-foreground leading-relaxed text-center">
-                        This isn&apos;t about quick wins. It&apos;s about building a reputation that opens doors. Organizations trust AILCN-certified consultants because they know the certification means something. That trust translates to better opportunities, stronger relationships, and sustainable growth.
-                      </p>
-                    </CardContent>
-                  </Card>
+                    return (
+                      <Card key={card.title} className="bg-card rounded-2xl shadow-lg">
+                        <CardContent className="p-8">
+                          <Icon className="w-12 h-12 text-primary mb-6" />
+                          <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
+                          <p className="text-muted-foreground leading-relaxed">{card.description}</p>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               </motion.div>
             </div>
           </section>
 
-          {/* Program Preview Section */}
-          <section className="py-20 bg-secondary/35 border-y border-foreground/10">
+          {/* 90-Day Build */}
+          <section className="py-20 bg-muted/50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+                className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"
               >
                 <div>
-                  <p className="section-kicker text-gold">Program details</p>
-                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">
-                    See what the certification actually helps you build.
-                  </h2>
-                  <p className="mt-5 text-lg leading-8 text-muted-foreground">
-                    We broke out the full program into a dedicated page so you can explore the consulting model, technology ecosystem, revenue opportunities, executive-facing tools, and credential assets in more depth.
-                  </p>
-                  <div className="mt-8">
-                    <Link to="/consultants/program">
-                      <Button size="lg" className="rounded-none px-7 py-6 text-sm uppercase tracking-[0.18em]">
-                        View Full Program Details
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </Link>
-                  </div>
+                  <span className="eyebrow-rule section-kicker text-gold">90-day build</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">90 days to build and launch your consulting offer</h2>
                 </div>
 
-                <div className="overflow-hidden border border-foreground/10 bg-background p-4 shadow-sm">
-                  <img
-                    src="/expandpro-consultant-dashboard.png"
-                    alt="ExpandPro consultant dashboard preview"
-                    className="w-full rounded-xl border border-foreground/10"
-                  />
+                <div className="space-y-8 border-l border-foreground/10 pl-0 md:pl-8">
+                  {buildSteps.map((step, index) => (
+                    <motion.div
+                      key={step.number}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.45, delay: index * 0.08 }}
+                      viewport={{ once: true }}
+                      className="grid gap-3 md:grid-cols-[96px_minmax(0,1fr)]"
+                    >
+                      <div className="font-display text-5xl leading-none text-primary/55">{step.number}</div>
+                      <div className="bg-background p-6 shadow-sm">
+                        <h3 className="text-xl font-semibold">{step.title}</h3>
+                        <p className="mt-3 leading-7 text-muted-foreground">{step.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Hard Filter */}
+          <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="grid gap-8 lg:grid-cols-2 max-w-5xl mx-auto"
+              >
+                <div className="border border-foreground/10 bg-card p-8 shadow-sm">
+                  <h2 className="text-3xl font-bold mb-5">Who this is for</h2>
+                  <p className="text-muted-foreground mb-6">You&apos;re a fit if you:</p>
+                  <ul className="space-y-3">
+                    {fitBullets.map(bullet => (
+                      <li key={bullet} className="flex items-start text-sm leading-6 text-muted-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="border border-foreground/10 bg-secondary/35 p-8 shadow-sm">
+                  <h3 className="text-2xl font-bold mb-5">You are not a fit if you:</h3>
+                  <ul className="space-y-3">
+                    {notFitBullets.map(bullet => (
+                      <li key={bullet} className="flex items-start text-sm leading-6 text-foreground">
+                        <span className="mr-2 mt-1 inline-block h-2 w-2 rounded-full bg-gold flex-shrink-0" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Standards */}
+          <section className="py-20 border-y border-foreground/10 bg-secondary/35">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-4xl mx-auto"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">This is intentionally selective</h2>
+                <div className="space-y-4 text-lg leading-8 text-muted-foreground">
+                  <p>We are not building a large network.</p>
+                  <p>We are building a credible one.</p>
+                </div>
+                <ul className="mt-8 space-y-3 border-t border-foreground/10 pt-6">
+                  {standardsBullets.map(bullet => (
+                    <li key={bullet} className="flex items-start text-sm leading-6 text-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8 text-lg leading-8 text-foreground">Most applicants will not be accepted.</p>
               </motion.div>
             </div>
           </section>
@@ -239,7 +386,7 @@ const ConsultantLandingPage = () => {
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">Apply to join</h2>
                   <p className="text-muted-foreground">
-                    Tell us about your experience and why you want to join the network. Your interview link will be unlocked immediately after.
+                    If you&apos;re serious about building a consulting practice tied to real AI work, apply. If you&apos;re still exploring, this is not the right step yet.
                   </p>
                 </div>
 
@@ -338,7 +485,7 @@ const ConsultantLandingPage = () => {
                           className="w-full transition-all duration-200 active:scale-[0.98]"
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? 'Submitting...' : 'Continue to interview'}
+                          {isSubmitting ? 'Submitting...' : 'Submit Application'}
                           {!isSubmitting && <ArrowRight className="ml-2 w-4 h-4" />}
                         </Button>
                       </form>
