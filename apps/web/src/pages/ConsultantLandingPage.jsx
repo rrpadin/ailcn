@@ -345,6 +345,62 @@ const ConsultantLandingPage = () => {
             </div>
           </section>
 
+          {/* Technology Ecosystem */}
+          <section className="py-20 border-y border-foreground/10 bg-secondary/35">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="space-y-12"
+              >
+                <div className="max-w-4xl">
+                  <span className="eyebrow-rule section-kicker text-gold">Technology ecosystem</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">You don&apos;t need to build your own tech stack</h2>
+                  <div className="mt-5 space-y-4 text-lg leading-8 text-muted-foreground">
+                    <p>Most consultants get stuck trying to assemble tools instead of selling and delivering real work.</p>
+                    <p>Inside AILCN, you use a pre-built ecosystem to:</p>
+                  </div>
+                  <ul className="mt-6 space-y-3">
+                    <li className="flex items-start text-sm leading-6 text-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Deliver AI-enabled solutions tied to business outcomes</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Track performance, adoption, and impact</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Support enterprise-level engagements from day one</span>
+                    </li>
+                  </ul>
+                  <p className="mt-6 max-w-4xl text-lg leading-8 text-foreground">
+                    This allows you to focus on what actually drives revenue: closing deals and delivering results, not configuring software.
+                  </p>
+                </div>
+
+                <div className="grid gap-8 lg:grid-cols-2">
+                  <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-background shadow-sm">
+                    <img
+                      src="/consultant-dashboard-overview.png"
+                      alt="Consultant dashboard showing client portfolio health, active engagements, and portfolio ROI"
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="overflow-hidden rounded-2xl border border-foreground/10 bg-background shadow-sm">
+                    <img
+                      src="/consultant-dashboard-kpi.png"
+                      alt="Executive KPI dashboard showing AI readiness, time to competency, performance delta, and revenue impact"
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* Standards */}
           <section className="py-20 border-y border-foreground/10 bg-secondary/35">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
