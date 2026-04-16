@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle2, Target, Shield, Zap, ArrowRight, FileText } from 'lucide-react';
+import { CheckCircle2, ArrowRight, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import Header from '@/components/Header';
@@ -14,6 +13,7 @@ import Footer from '@/components/Footer';
 import pb from '@/lib/pocketbaseClient';
 
 const ASSESSMENT_URL = 'https://tally.so/r/vGyArl';
+
 const executionStats = [
   {
     value: '50%',
@@ -21,24 +21,39 @@ const executionStats = [
     description: 'When AI is aligned to role-based workflows',
   },
   {
-    value: '25%+',
+    value: '20-30%',
     title: 'Performance improvement',
-    description: 'Within the first 90 days of implementation',
+    description: 'In targeted areas when execution is scoped correctly',
   },
   {
     value: '2-5X',
-    title: 'Return on AI investment',
+    title: 'Return on focused initiatives',
     description: 'When learning is tied directly to business outcomes',
   },
   {
-    value: '40%',
-    title: 'Reduction in tool waste',
-    description: 'From eliminating fragmented AI usage',
+    value: 'Lower',
+    title: 'Tool redundancy',
+    description: 'Reduced unnecessary spend and overlapping systems',
   },
   {
-    value: '80%+',
-    title: 'Increase in AI adoption and trust',
-    description: 'When governance and workflows are clearly defined',
+    value: 'Higher',
+    title: 'Adoption',
+    description: 'When use cases are clearly defined from the start',
+  },
+];
+
+const approachCards = [
+  {
+    title: 'Clarity before commitment',
+    description: 'No premature investment in tools or vendors.',
+  },
+  {
+    title: 'Structured execution',
+    description: 'Work begins with defined scope, not assumptions.',
+  },
+  {
+    title: 'Accountability to outcomes',
+    description: 'Every engagement is tied to measurable business impact.',
   },
 ];
 
@@ -49,41 +64,54 @@ const OrganizationLandingPage = () => {
     phone: '',
     organization_name: '',
     industry: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    pb.collection('analytics_events').create({
-      event_type: 'page_view',
-      page: 'organization_landing',
-      timestamp: new Date().toISOString()
-    }, { $autoCancel: false }).catch(() => { });
+    pb.collection('analytics_events')
+      .create(
+        {
+          event_type: 'page_view',
+          page: 'organization_landing',
+          timestamp: new Date().toISOString(),
+        },
+        { $autoCancel: false }
+      )
+      .catch(() => {});
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      await pb.collection('applications').create({
-        type: 'organization',
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        organization_name: formData.organization_name,
-        industry: formData.industry,
-        message: formData.message,
-        status: 'pending'
-      }, { $autoCancel: false });
+      await pb.collection('applications').create(
+        {
+          type: 'organization',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          organization_name: formData.organization_name,
+          industry: formData.industry,
+          message: formData.message,
+          status: 'pending',
+        },
+        { $autoCancel: false }
+      );
 
-      pb.collection('analytics_events').create({
-        event_type: 'assessment_start',
-        page: 'organization_landing',
-        metadata: JSON.stringify({ type: 'organization' }),
-        timestamp: new Date().toISOString()
-      }, { $autoCancel: false }).catch(() => { });
+      pb.collection('analytics_events')
+        .create(
+          {
+            event_type: 'assessment_start',
+            page: 'organization_landing',
+            metadata: JSON.stringify({ type: 'organization' }),
+            timestamp: new Date().toISOString(),
+          },
+          { $autoCancel: false }
+        )
+        .catch(() => {});
 
       toast.success('Information submitted! Your assessment is ready below.');
       setSubmitted(true);
@@ -94,7 +122,7 @@ const OrganizationLandingPage = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -102,14 +130,16 @@ const OrganizationLandingPage = () => {
     <>
       <Helmet>
         <title>For organizations - AILCN</title>
-        <meta name="description" content="Get matched with certified AI consultants who understand your challenges. Start with our AI readiness assessment." />
+        <meta
+          name="description"
+          content="Start with a defined AI readiness assessment to identify where AI can improve performance and support real execution."
+        />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
         <Header />
 
         <main className="flex-1">
-          {/* Hero Section */}
           <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -118,29 +148,69 @@ const OrganizationLandingPage = () => {
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto text-center"
               >
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
-                  Find AI expertise that actually delivers
+                <h1
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+                  style={{ letterSpacing: '-0.02em' }}
+                >
+                  Stop experimenting with AI. Start executing where it matters.
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                  Stop guessing. Start with our AI readiness assessment. Get matched with certified consultants who understand your specific challenges and can help you move forward with confidence.
+                <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed max-w-3xl mx-auto">
+                  Most organizations don&apos;t need more tools or ideas.
+                  They need clarity on where AI will actually improve performance and how to implement it without wasted time or budget.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer">
+                <p className="text-lg leading-8 text-foreground mb-8">
+                  Every engagement starts with a defined, paid assessment.
+                </p>
+                <div className="flex justify-center">
+                  <a href="#apply">
                     <Button size="lg" className="min-w-72">
-                      AI Learning Readiness Snapshot (TM)
+                      Start AI Readiness Assessment Application
                     </Button>
                   </a>
-                  <Link to="/consultants/directory">
-                    <Button size="lg" variant="outline" className="min-w-72">
-                      Browse Consultant Directory
-                    </Button>
-                  </Link>
                 </div>
               </motion.div>
             </div>
           </section>
 
-          {/* Execution Snapshot Section */}
+          <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-4xl mx-auto"
+              >
+                <span className="eyebrow-rule section-kicker text-gold">The problem</span>
+                <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">
+                  AI isn&apos;t the problem. Execution is.
+                </h2>
+                <div className="mt-5 space-y-4 text-lg leading-8 text-muted-foreground">
+                  <p>Teams move between pilots, vendors, and internal discussions without a clear baseline.</p>
+                  <p>Initiatives stall because there&apos;s no shared definition of success or prioritization.</p>
+                </div>
+
+                <div className="mt-10 border border-foreground/10 bg-secondary/35 p-8">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground">The result:</p>
+                  <ul className="mt-4 space-y-3">
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Fragmented efforts</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Unclear ROI</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Low adoption despite investment</span>
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           <section className="py-20 border-y border-foreground/10 bg-secondary/35">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -151,10 +221,12 @@ const OrganizationLandingPage = () => {
                 className="max-w-5xl mx-auto"
               >
                 <div className="max-w-3xl">
-                  <span className="eyebrow-rule section-kicker text-gold">Execution snapshot</span>
-                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">AI isn&apos;t the problem. Execution is.</h2>
+                  <span className="eyebrow-rule section-kicker text-gold">What works</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">
+                    Execution only works when it&apos;s scoped correctly
+                  </h2>
                   <p className="mt-5 text-lg leading-8 text-muted-foreground">
-                    Most organizations are stuck between experimentation and real impact.
+                    When AI is aligned to real workflows and measured against business outcomes, organizations typically see:
                   </p>
                 </div>
 
@@ -163,13 +235,138 @@ const OrganizationLandingPage = () => {
                     <Card
                       key={stat.title}
                       className={`rounded-2xl border border-foreground/10 bg-background/90 shadow-sm ${
-                        index === executionStats.length - 1 ? 'md:col-span-2 md:max-w-xl md:justify-self-center xl:col-span-1 xl:max-w-none' : ''
+                        index === executionStats.length - 1
+                          ? 'md:col-span-2 md:max-w-xl md:justify-self-center xl:col-span-1 xl:max-w-none'
+                          : ''
                       }`}
                     >
                       <CardContent className="p-8 text-center">
-                        <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>{stat.value}</div>
+                        <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                          {stat.value}
+                        </div>
                         <p className="font-medium mb-2 uppercase tracking-[0.14em]">{stat.title}</p>
                         <p className="text-sm leading-6 text-muted-foreground">{stat.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                <p className="mt-10 text-lg leading-8 text-foreground max-w-3xl">
+                  These outcomes depend on getting the starting point right.
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto grid gap-10 lg:grid-cols-[0.85fr_1.15fr]"
+              >
+                <div>
+                  <span className="eyebrow-rule section-kicker text-gold">Mandatory first step</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">
+                    AI Readiness Assessment
+                  </h2>
+                  <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                    Before selecting tools, hiring vendors, or launching initiatives, a clear baseline is required.
+                  </p>
+                </div>
+
+                <div className="border border-foreground/10 bg-card p-8 shadow-sm">
+                  <p className="text-lg leading-8 text-muted-foreground">
+                    This is a fixed-scope, paid engagement designed to define:
+                  </p>
+                  <ul className="mt-6 space-y-3">
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Where AI can create measurable impact</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>Which use cases are worth prioritizing</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>What constraints must be addressed</span>
+                    </li>
+                    <li className="flex items-start text-sm leading-6 text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                      <span>What a realistic execution path looks like</span>
+                    </li>
+                  </ul>
+                  <p className="mt-6 text-sm leading-6 text-foreground">
+                    This is not a workshop or exploratory session. It is a structured diagnostic used to support real decisions.
+                  </p>
+                  <p className="mt-6 text-lg leading-8 text-foreground">Typical starting point: $1,500</p>
+                  <div className="mt-8">
+                    <a href="#apply">
+                      <Button size="lg" className="w-full sm:w-auto">
+                        Start AI Readiness Assessment Application
+                      </Button>
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          <section className="py-20 border-y border-foreground/10 bg-secondary/35">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-4xl mx-auto"
+              >
+                <span className="eyebrow-rule section-kicker text-gold">What happens next</span>
+                <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">
+                  Execution follows clarity
+                </h2>
+                <p className="mt-5 text-lg leading-8 text-muted-foreground">After the assessment:</p>
+                <ul className="mt-6 space-y-3">
+                  <li className="flex items-start text-sm leading-6 text-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                    <span>Priorities are defined</span>
+                  </li>
+                  <li className="flex items-start text-sm leading-6 text-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                    <span>Scope is clear</span>
+                  </li>
+                  <li className="flex items-start text-sm leading-6 text-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
+                    <span>The right consultant is assigned based on the work</span>
+                  </li>
+                </ul>
+                <p className="mt-8 text-lg leading-8 text-muted-foreground">
+                  Consultants are only engaged once there is a validated problem and a defined path forward.
+                </p>
+              </motion.div>
+            </div>
+          </section>
+
+          <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto"
+              >
+                <span className="eyebrow-rule section-kicker text-gold">Why this approach</span>
+                <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">Clarity before commitment</h2>
+                <div className="mt-10 grid gap-6 md:grid-cols-3">
+                  {approachCards.map(card => (
+                    <Card key={card.title} className="rounded-2xl border border-foreground/10 shadow-sm">
+                      <CardContent className="p-8">
+                        <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
+                        <p className="text-sm leading-6 text-muted-foreground">{card.description}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -178,84 +375,7 @@ const OrganizationLandingPage = () => {
             </div>
           </section>
 
-          {/* Benefits Section */}
-          <section className="py-20">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Why organizations choose AILCN</h2>
-
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
-                  <Card className="bg-card rounded-2xl shadow-lg">
-                    <CardContent className="p-8">
-                      <Target className="w-12 h-12 text-primary mb-6" />
-                      <h3 className="text-xl font-semibold mb-4">Clear assessment</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        Our AI readiness diagnostic cuts through the noise. You'll understand exactly where you are, what's possible, and what it will take to get there.
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Comprehensive capability assessment</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Honest evaluation of readiness</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Actionable roadmap forward</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-card rounded-2xl shadow-lg">
-                    <CardContent className="p-8">
-                      <Shield className="w-12 h-12 text-primary mb-6" />
-                      <h3 className="text-xl font-semibold mb-4">Vetted consultants</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        Every consultant in our network has been certified through a rigorous program. They've proven they can deliver, not just talk about AI.
-                      </p>
-                      <ul className="space-y-2">
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Certified through 90-day program</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Proven track record of results</span>
-                        </li>
-                        <li className="flex items-start text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                          <span>Matched to your specific needs</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div className="max-w-3xl mx-auto">
-                  <Card className="bg-muted/50 rounded-2xl">
-                    <CardContent className="p-8">
-                      <Zap className="w-12 h-12 text-primary mb-6 mx-auto" />
-                      <h3 className="text-xl font-semibold mb-4 text-center">Execution tied to outcomes</h3>
-                      <p className="text-muted-foreground leading-relaxed text-center">
-                        The goal is not more AI activity. It is faster competency, stronger performance, clearer ROI, less tool waste, and higher trust in how AI is actually used across the organization.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Assessment Section */}
-          <section className="py-20 bg-muted/50">
+          <section id="apply" className="py-20 bg-muted/50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -265,26 +385,44 @@ const OrganizationLandingPage = () => {
                 className="max-w-2xl mx-auto"
               >
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">Start your assessment</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    If AI is a priority, clarity comes first.
+                  </h2>
                   <p className="text-muted-foreground">
-                    Tell us about your organization and what you're trying to achieve. We'll unlock your assessment immediately after.
+                    Start with a defined assessment. Everything else follows from there.
                   </p>
+                  <div className="mt-6 flex justify-center">
+                    <a href="#apply">
+                      <Button size="lg" className="min-w-72">
+                        Start AI Readiness Assessment Application
+                      </Button>
+                    </a>
+                  </div>
                 </div>
 
-                {/* Step indicators */}
                 <div className="flex items-center justify-center gap-4 mb-10">
                   <div className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${submitted ? 'bg-primary/20 text-primary' : 'bg-primary text-primary-foreground'}`}>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
+                        submitted ? 'bg-primary/20 text-primary' : 'bg-primary text-primary-foreground'
+                      }`}
+                    >
                       {submitted ? <CheckCircle2 className="w-4 h-4" /> : '1'}
                     </div>
                     <span className="text-sm font-medium">Your info</span>
                   </div>
                   <div className={`h-px w-12 ${submitted ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
                   <div className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${submitted ? 'bg-primary text-primary-foreground' : 'bg-muted-foreground/20 text-muted-foreground'}`}>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
+                        submitted ? 'bg-primary text-primary-foreground' : 'bg-muted-foreground/20 text-muted-foreground'
+                      }`}
+                    >
                       2
                     </div>
-                    <span className={`text-sm font-medium ${submitted ? '' : 'text-muted-foreground'}`}>Take assessment</span>
+                    <span className={`text-sm font-medium ${submitted ? '' : 'text-muted-foreground'}`}>
+                      Take assessment
+                    </span>
                   </div>
                 </div>
 
@@ -293,7 +431,9 @@ const OrganizationLandingPage = () => {
                     <CardContent className="p-8">
                       <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                          <Label htmlFor="name" className="text-sm font-medium">Your name</Label>
+                          <Label htmlFor="name" className="text-sm font-medium">
+                            Your name
+                          </Label>
                           <Input
                             id="name"
                             name="name"
@@ -307,7 +447,9 @@ const OrganizationLandingPage = () => {
                         </div>
 
                         <div>
-                          <Label htmlFor="email" className="text-sm font-medium">Email address</Label>
+                          <Label htmlFor="email" className="text-sm font-medium">
+                            Email address
+                          </Label>
                           <Input
                             id="email"
                             name="email"
@@ -321,7 +463,9 @@ const OrganizationLandingPage = () => {
                         </div>
 
                         <div>
-                          <Label htmlFor="phone" className="text-sm font-medium">Phone number</Label>
+                          <Label htmlFor="phone" className="text-sm font-medium">
+                            Phone number
+                          </Label>
                           <Input
                             id="phone"
                             name="phone"
@@ -334,7 +478,9 @@ const OrganizationLandingPage = () => {
                         </div>
 
                         <div>
-                          <Label htmlFor="organization_name" className="text-sm font-medium">Organization name</Label>
+                          <Label htmlFor="organization_name" className="text-sm font-medium">
+                            Organization name
+                          </Label>
                           <Input
                             id="organization_name"
                             name="organization_name"
@@ -348,7 +494,9 @@ const OrganizationLandingPage = () => {
                         </div>
 
                         <div>
-                          <Label htmlFor="industry" className="text-sm font-medium">Industry</Label>
+                          <Label htmlFor="industry" className="text-sm font-medium">
+                            Industry
+                          </Label>
                           <Input
                             id="industry"
                             name="industry"
@@ -362,7 +510,9 @@ const OrganizationLandingPage = () => {
                         </div>
 
                         <div>
-                          <Label htmlFor="message" className="text-sm font-medium">What are you trying to achieve with AI?</Label>
+                          <Label htmlFor="message" className="text-sm font-medium">
+                            What are you trying to achieve with AI?
+                          </Label>
                           <Textarea
                             id="message"
                             name="message"
@@ -381,7 +531,7 @@ const OrganizationLandingPage = () => {
                           className="w-full transition-all duration-200 active:scale-[0.98]"
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? 'Submitting...' : 'Continue to assessment'}
+                          {isSubmitting ? 'Submitting...' : 'Start AI Readiness Assessment Application'}
                           {!isSubmitting && <ArrowRight className="ml-2 w-4 h-4" />}
                         </Button>
                       </form>
@@ -398,17 +548,13 @@ const OrganizationLandingPage = () => {
                         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                           <FileText className="w-8 h-8 text-primary" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-3">You're all set, {formData.name.split(' ')[0]}!</h3>
+                        <h3 className="text-2xl font-bold mb-3">You&apos;re all set, {formData.name.split(' ')[0]}!</h3>
                         <p className="text-muted-foreground leading-relaxed mb-8 max-w-md mx-auto">
-                          Your information has been saved. Click below to take your AI readiness assessment — it takes about 15 minutes and you'll receive personalized results.
+                          Your information has been saved. Click below to take your AI readiness assessment. It takes about 15 minutes and supports the next real decision.
                         </p>
-                        <a
-                          href={ASSESSMENT_URL}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer">
                           <Button size="lg" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
-                            Take your assessment
+                            Start AI Readiness Assessment Application
                             <ArrowRight className="ml-2 w-4 h-4" />
                           </Button>
                         </a>
