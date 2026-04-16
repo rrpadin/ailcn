@@ -163,7 +163,7 @@ const OrganizationLandingPage = () => {
                 </p>
                 <div className="flex justify-center">
                   <a href="#apply">
-                    <Button size="lg" className="min-w-72">
+                    <Button size="lg" className="w-full whitespace-normal text-center leading-5 sm:w-auto sm:min-w-72">
                       Start AI Readiness Assessment Application
                     </Button>
                   </a>
@@ -305,7 +305,7 @@ const OrganizationLandingPage = () => {
                   <p className="mt-6 text-lg leading-8 text-foreground">Typical starting point: $1,500</p>
                   <div className="mt-8">
                     <a href="#apply">
-                      <Button size="lg" className="w-full sm:w-auto">
+                      <Button size="lg" className="w-full whitespace-normal text-center leading-5 sm:w-auto">
                         Start AI Readiness Assessment Application
                       </Button>
                     </a>
@@ -393,7 +393,7 @@ const OrganizationLandingPage = () => {
                   </p>
                   <div className="mt-6 flex justify-center">
                     <a href="#apply">
-                      <Button size="lg" className="min-w-72">
+                      <Button size="lg" className="w-full whitespace-normal text-center leading-5 sm:w-auto sm:min-w-72">
                         Start AI Readiness Assessment Application
                       </Button>
                     </a>
@@ -528,7 +528,7 @@ const OrganizationLandingPage = () => {
                         <Button
                           type="submit"
                           size="lg"
-                          className="w-full transition-all duration-200 active:scale-[0.98]"
+                          className="w-full whitespace-normal text-center leading-5 transition-all duration-200 active:scale-[0.98]"
                           disabled={isSubmitting}
                         >
                           {isSubmitting ? 'Submitting...' : 'Start AI Readiness Assessment Application'}
@@ -553,7 +553,7 @@ const OrganizationLandingPage = () => {
                           Your information has been saved. Click below to take your AI readiness assessment. It takes about 15 minutes and supports the next real decision.
                         </p>
                         <a href={ASSESSMENT_URL} target="_blank" rel="noopener noreferrer">
-                          <Button size="lg" className="w-full sm:w-auto transition-all duration-200 active:scale-[0.98]">
+                          <Button size="lg" className="w-full whitespace-normal text-center leading-5 sm:w-auto transition-all duration-200 active:scale-[0.98]">
                             Start AI Readiness Assessment Application
                             <ArrowRight className="ml-2 w-4 h-4" />
                           </Button>

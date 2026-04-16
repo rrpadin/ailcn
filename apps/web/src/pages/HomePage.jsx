@@ -202,7 +202,7 @@ const HomePage = () => {
                     fallbackUrl="/consultants"
                     onClick={() => handleCTAClick('apply_consultant')}
                   >
-                    <Button size="lg" className="w-full rounded-none border border-primary bg-primary px-7 py-6 text-sm uppercase tracking-[0.22em] shadow-[8px_8px_0_hsl(var(--gold)/0.18)] sm:w-auto">
+                    <Button size="lg" className="w-full rounded-none border border-primary bg-primary px-6 py-5 text-xs uppercase tracking-[0.12em] whitespace-normal leading-5 text-center shadow-[8px_8px_0_hsl(var(--gold)/0.18)] sm:w-auto sm:px-7 sm:py-6 sm:text-sm sm:tracking-[0.18em]">
                       Take Consultant Readiness Assessment
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
@@ -213,7 +213,7 @@ const HomePage = () => {
                     fallbackUrl="/organizations"
                     onClick={() => handleCTAClick('start_assessment')}
                   >
-                    <Button size="lg" variant="outline" className="w-full rounded-none border-foreground/30 bg-transparent px-7 py-6 text-sm uppercase tracking-[0.18em] sm:w-auto">
+                    <Button size="lg" variant="outline" className="w-full rounded-none border-foreground/30 bg-transparent px-6 py-5 text-xs uppercase tracking-[0.14em] whitespace-normal leading-5 sm:w-auto sm:px-7 sm:py-6 sm:text-sm sm:tracking-[0.18em]">
                       Start AI Readiness Snapshot
                     </Button>
                   </DynamicLink>
