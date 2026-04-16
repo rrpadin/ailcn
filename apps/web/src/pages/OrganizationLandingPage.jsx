@@ -14,6 +14,33 @@ import Footer from '@/components/Footer';
 import pb from '@/lib/pocketbaseClient';
 
 const ASSESSMENT_URL = 'https://tally.so/r/vGyArl';
+const executionStats = [
+  {
+    value: '50%',
+    title: 'Time to competency',
+    description: 'When AI is aligned to role-based workflows',
+  },
+  {
+    value: '25%+',
+    title: 'Performance improvement',
+    description: 'Within the first 90 days of implementation',
+  },
+  {
+    value: '2-5X',
+    title: 'Return on AI investment',
+    description: 'When learning is tied directly to business outcomes',
+  },
+  {
+    value: '40%',
+    title: 'Reduction in tool waste',
+    description: 'From eliminating fragmented AI usage',
+  },
+  {
+    value: '80%+',
+    title: 'Increase in AI adoption and trust',
+    description: 'When governance and workflows are clearly defined',
+  },
+];
 
 const OrganizationLandingPage = () => {
   const [formData, setFormData] = useState({
@@ -113,6 +140,44 @@ const OrganizationLandingPage = () => {
             </div>
           </section>
 
+          {/* Execution Snapshot Section */}
+          <section className="py-20 border-y border-foreground/10 bg-secondary/35">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto"
+              >
+                <div className="max-w-3xl">
+                  <span className="eyebrow-rule section-kicker text-gold">Execution snapshot</span>
+                  <h2 className="font-display mt-5 text-4xl leading-tight md:text-5xl">AI isn&apos;t the problem. Execution is.</h2>
+                  <p className="mt-5 text-lg leading-8 text-muted-foreground">
+                    Most organizations are stuck between experimentation and real impact.
+                  </p>
+                </div>
+
+                <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                  {executionStats.map((stat, index) => (
+                    <Card
+                      key={stat.title}
+                      className={`rounded-2xl border border-foreground/10 bg-background/90 shadow-sm ${
+                        index === executionStats.length - 1 ? 'md:col-span-2 md:max-w-xl md:justify-self-center xl:col-span-1 xl:max-w-none' : ''
+                      }`}
+                    >
+                      <CardContent className="p-8 text-center">
+                        <div className="text-5xl font-bold text-gold mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>{stat.value}</div>
+                        <p className="font-medium mb-2 uppercase tracking-[0.14em]">{stat.title}</p>
+                        <p className="text-sm leading-6 text-muted-foreground">{stat.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* Benefits Section */}
           <section className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -178,9 +243,9 @@ const OrganizationLandingPage = () => {
                   <Card className="bg-muted/50 rounded-2xl">
                     <CardContent className="p-8">
                       <Zap className="w-12 h-12 text-primary mb-6 mx-auto" />
-                      <h3 className="text-xl font-semibold mb-4 text-center">Move forward with confidence</h3>
+                      <h3 className="text-xl font-semibold mb-4 text-center">Execution tied to outcomes</h3>
                       <p className="text-muted-foreground leading-relaxed text-center">
-                        AI transformation doesn't have to be overwhelming. With the right assessment and the right consultant, you can move from confusion to clarity. Our network exists to make that connection happen.
+                        The goal is not more AI activity. It is faster competency, stronger performance, clearer ROI, less tool waste, and higher trust in how AI is actually used across the organization.
                       </p>
                     </CardContent>
                   </Card>

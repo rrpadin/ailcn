@@ -43,7 +43,7 @@ const engagementOptions = [
     icon: Shield,
     title: 'Consultants',
     description: 'You have 5+ years of experience and want to build an AI consulting practice tied to revenue.',
-    cta: 'Apply',
+    cta: 'Take Consultant Readiness Assessment',
     linkData: 'applyLink',
     fallbackUrl: '/consultants',
     clickType: 'apply_consultant_card',
@@ -65,6 +65,34 @@ const standardsBullets = [
   'Sell into real business problems',
   'Deliver measurable outcomes',
   'Operate credibly with executives',
+];
+
+const organizationImpactStats = [
+  {
+    value: '50%',
+    title: 'Time to competency',
+    description: 'When AI is aligned to role-based workflows',
+  },
+  {
+    value: '25%+',
+    title: 'Performance improvement',
+    description: 'Within the first 90 days of implementation',
+  },
+  {
+    value: '2-5X',
+    title: 'Return on AI investment',
+    description: 'When learning is tied directly to business outcomes',
+  },
+  {
+    value: '40%',
+    title: 'Reduction in tool waste',
+    description: 'From eliminating fragmented AI usage',
+  },
+  {
+    value: '80%+',
+    title: 'Increase in AI adoption and trust',
+    description: 'When governance and workflows are clearly defined',
+  },
 ];
 
 const DynamicLink = ({ linkData, fallbackUrl, onClick, children, className }) => {
@@ -163,7 +191,7 @@ const HomePage = () => {
                     onClick={() => handleCTAClick('apply_consultant')}
                   >
                     <Button size="lg" className="w-full rounded-none border border-primary bg-primary px-7 py-6 text-sm uppercase tracking-[0.22em] shadow-[8px_8px_0_hsl(var(--gold)/0.18)] sm:w-auto">
-                      Apply as consultant
+                      Take Consultant Readiness Assessment
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
                   </DynamicLink>
@@ -348,7 +376,7 @@ const HomePage = () => {
                           <DynamicLink linkData={link} fallbackUrl={option.fallbackUrl} onClick={() => handleCTAClick(option.clickType)}>
                             <Button
                               variant={option.variant}
-                              className={`w-full rounded-none px-5 py-6 text-xs uppercase tracking-[0.2em] ${
+                              className={`w-full rounded-none px-5 py-6 text-xs uppercase tracking-[0.16em] whitespace-normal leading-5 ${
                                 option.variant === 'default'
                                   ? 'border border-gold/40 bg-gold text-primary shadow-none hover:bg-gold/90'
                                   : 'border-foreground/20 bg-transparent'
@@ -361,6 +389,27 @@ const HomePage = () => {
                       </div>
                     );
                   })}
+                </div>
+                <div className="grid gap-8 border border-foreground/10 bg-secondary/35 p-8 lg:grid-cols-[0.8fr_1.2fr]">
+                  <div>
+                    <span className="section-kicker text-gold">Organization snapshot</span>
+                    <h3 className="font-display mt-4 text-3xl leading-tight">AI isn&apos;t the problem. Execution is.</h3>
+                    <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                      Most organizations are stuck between experimentation and real impact.
+                    </p>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {organizationImpactStats.map((stat, index) => (
+                      <div
+                        key={stat.title}
+                        className={index === organizationImpactStats.length - 1 ? 'sm:col-span-2 sm:max-w-sm sm:justify-self-center' : undefined}
+                      >
+                        <div className="font-display text-4xl leading-none text-primary">{stat.value}</div>
+                        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-foreground">{stat.title}</p>
+                        <p className="mt-2 text-xs leading-5 text-muted-foreground">{stat.description}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <p className="text-lg leading-8 text-muted-foreground">
                   If neither applies, this is not the right entry point.
